@@ -72,6 +72,7 @@ class RegisterForm extends StatelessWidget {
             icon: Icon(Icons.security),
             hintText: 'Password',
           ),
+          obscureText: true,
           validator: (value) =>
               state.isValidPassword ? null : 'Password is too short',
           onChanged: (value) {

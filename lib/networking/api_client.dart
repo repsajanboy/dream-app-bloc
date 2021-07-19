@@ -27,4 +27,18 @@ class ApiClient {
     }
   }
 
+  Future<dynamic> logout(String token) async {
+    try {
+      const logoutUrl = "$baseUrl/api/auth/logout";
+      final logoutResponse = await _dio.get(
+        logoutUrl,
+        options: Options(
+          headers: {"auth-token": token}
+        ),
+      );
+      return json.decode(logoutResponse.toString());
+    } on DioError catch (e) {
+      return json.decode(e.response.toString());
+    }
+  }
 }

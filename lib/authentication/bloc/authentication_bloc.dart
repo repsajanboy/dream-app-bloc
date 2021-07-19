@@ -28,6 +28,12 @@ class AuthenticationBloc
       } else {
         yield AuthenticationUnauthenticated();
       }
+    } else if (event is LogOut) {
+        yield AuthenticationLoading();
+      final logout = await _authorizationRepository.logout();
+      if(logout["success"] == true) {
+        yield AuthenticationUnauthenticated();
+      }
     }
   }
 }

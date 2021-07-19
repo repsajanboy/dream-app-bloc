@@ -40,4 +40,14 @@ class AuthorizationRepository {
       return result;
     }
   }
+
+  Future<dynamic> logout() async {
+    String token = await _sharedPref.readStr("token");
+    token = token.replaceAll('"', '').trim();
+    final result = await apiClient.logout(token);
+    if(result["success"] == true){
+      _sharedPref.clear();
+    }
+    return result;
+  }
 }
