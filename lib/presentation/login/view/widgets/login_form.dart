@@ -20,7 +20,6 @@ class LoginForm extends StatelessWidget {
             _emailField(),
             _passwordField(),
             _loginButton(context),
-            DontHaveAccount(),
           ],
         ),
       ),

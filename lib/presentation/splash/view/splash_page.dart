@@ -33,7 +33,7 @@ class _SplashViewState extends State<SplashView> {
         if (state is AuthenticationAuthenticated) {
           Navigator.pushReplacementNamed(context, RouteNames.menu);
         } else if (state is AuthenticationUnauthenticated) {
-          Navigator.pushReplacementNamed(context, RouteNames.login);
+          Navigator.pushReplacementNamed(context, RouteNames.landing);
         }
       },
       child: _splashWidget(),

@@ -20,7 +20,6 @@ class RegisterForm extends StatelessWidget {
             _emailField(),
             _passwordField(),
             _registerButton(context),
-            AlreadyHaveAccount(),
           ],
         ),
       ),

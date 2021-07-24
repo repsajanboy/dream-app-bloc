@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
+import 'package:dream_app_bloc/presentation/landing/landing.dart';
 import 'package:dream_app_bloc/presentation/login/login.dart';
 import 'package:dream_app_bloc/presentation/register/register.dart';
 import 'package:dream_app_bloc/presentation/splash/splash.dart';
@@ -11,6 +12,8 @@ class AppRouter {
     switch (routeSettings.name) {
       case RouteNames.splash:
         return MaterialPageRoute(builder: (_) => SplashPage());
+      case RouteNames.landing:
+        return MaterialPageRoute(builder: (_) => LandingPage());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => LoginPage());
       case RouteNames.register:
