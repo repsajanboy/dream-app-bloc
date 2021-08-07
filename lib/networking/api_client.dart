@@ -41,4 +41,20 @@ class ApiClient {
       return json.decode(e.response.toString());
     }
   }
+
+  Future<dynamic> fetchDreams(String token) async {
+    try{
+      const dreamsUrl = "$baseUrl/api/dream";
+      final dreamsResponse = await _dio.get(
+        dreamsUrl,
+        options: Options(
+          headers: {"auth-token": token}
+        ),
+      );
+      final response = json.decode(dreamsResponse.toString()) as List;
+      return response;
+    }  on DioError catch (e) {
+      return json.decode(e.response.toString());
+    }
+  }
 }

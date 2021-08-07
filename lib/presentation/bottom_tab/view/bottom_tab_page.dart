@@ -1,8 +1,6 @@
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
-import 'package:dream_app_bloc/presentation/post/post.dart';
+import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
-import 'package:dream_app_bloc/presentation/search/search.dart';
-import 'package:dream_app_bloc/presentation/statistic/statistic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -83,30 +81,22 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
     switch (type) {
       case BottomTabItemType.home:
         return BottomTabItem(
-            page: PostsPage(),
+            page: DreamsPage(),
             icon: const Icon(Icons.home, color: Colors.grey),
             activeIcon: const Icon(Icons.home, color: Colors.blue),
-            title: 'Posts');
-      case BottomTabItemType.search:
-        return BottomTabItem(
-            page: SearchPage(),
-            icon: const Icon(Icons.search, color: Colors.grey),
-            activeIcon: const Icon(Icons.search, color: Colors.blueGrey),
-            title: 'Search');
-      case BottomTabItemType.statistic:
-        return BottomTabItem(
-            page: StatisticPage(),
-            icon: const Icon(Icons.linear_scale, color: Colors.grey),
-            activeIcon: const Icon(Icons.linear_scale, color: Colors.blue),
-            title: 'Statistic');
+            title: '');
       case BottomTabItemType.profile:
         return BottomTabItem(
             page: ProfilePage(),
-            icon: const Icon(Icons.verified_user, color: Colors.grey),
-            activeIcon: const Icon(Icons.verified_user, color: Colors.blue),
-            title: 'Profile');
+            icon: const Icon(Icons.account_circle_outlined, color: Colors.grey),
+            activeIcon: const Icon(Icons.account_circle_outlined, color: Colors.blue),
+            title: '');
       default:
-        return null;
+        return BottomTabItem(
+            page: const SizedBox(),
+            icon: const SizedBox(),
+            activeIcon: const SizedBox(),
+            title: '');
     }
   }
 }

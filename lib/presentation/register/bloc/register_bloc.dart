@@ -10,7 +10,7 @@ part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final AuthorizationRepository authorizationRepository;
-  RegisterBloc({this.authorizationRepository}) : super(RegisterState());
+  RegisterBloc({required this.authorizationRepository}) : super(RegisterState());
 
   @override
   Stream<RegisterState> mapEventToState(

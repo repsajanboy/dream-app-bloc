@@ -35,7 +35,7 @@ class LoginForm extends StatelessWidget {
             hintText: 'Email',
           ),
           validator: (value) =>
-              EmailValidator.validate(value) ? null : 'Invalid email',
+              EmailValidator.validate(value!) ? null : 'Invalid email',
           onChanged: (value) =>
               context.read<LoginBloc>().add(LoginEmailChanged(email: value)),
         );
@@ -69,7 +69,7 @@ class LoginForm extends StatelessWidget {
         ? const CircularProgressIndicator()
         : ElevatedButton(
             onPressed: () {
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 context.read<LoginBloc>().add(LoginSubmitted());
               }
             },

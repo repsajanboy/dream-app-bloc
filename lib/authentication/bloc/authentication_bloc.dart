@@ -9,7 +9,7 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc({@required AuthorizationRepository authorizationRepository})
+  AuthenticationBloc({required AuthorizationRepository authorizationRepository})
       : assert(authorizationRepository != null),
       _authorizationRepository = authorizationRepository,
         super(AuthenticationInitial());

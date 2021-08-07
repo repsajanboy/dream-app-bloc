@@ -10,9 +10,9 @@ class SharedPref {
 
   readObj(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    return json.decode(prefs.getString(key));
+    return json.decode(prefs.getString(key)!);
   }
-  Future<String> readStr(String key) async {
+  Future<String?> readStr(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
   }

@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   final ApiClient apiClient;
   final AppRouter router;
 
-  const MyApp({Key key, this.apiClient, this.router}) : super(key: key);
+  const MyApp({Key? key, required this.apiClient, required this.router}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<AuthorizationRepository>(

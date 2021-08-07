@@ -7,9 +7,9 @@ class BottomTabItem {
   final Widget activeIcon;
 
   BottomTabItem({
-    @required this.page,
-    @required this.title,
-    @required this.icon,
-    @required this.activeIcon,
+    required this.page,
+    required this.title,
+    required this.icon,
+    required this.activeIcon,
   });
 }

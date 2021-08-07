@@ -16,10 +16,10 @@ class RegisterState {
   });
 
   RegisterState copyWith({
-    String name,
-    String email,
-    String password,
-    FormSubmissionStatus formStatus,
+    String? name,
+    String? email,
+    String? password,
+    FormSubmissionStatus? formStatus,
   }) {
     return RegisterState(
       name: name ?? this.name,

@@ -12,7 +12,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   final AuthorizationRepository authorizationRepository;
 
-  LoginBloc({this.authorizationRepository}) : super(LoginState());
+  LoginBloc({required this.authorizationRepository}) : super(LoginState());
 
   @override
   Stream<LoginState> mapEventToState(

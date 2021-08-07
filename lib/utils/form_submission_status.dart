@@ -13,5 +13,5 @@ class SubmissionSuccess extends FormSubmissionStatus{}
 class SubmissionFailed extends FormSubmissionStatus {
   final String error;
 
-  SubmissionFailed({this.error});
+  SubmissionFailed({required this.error});
 }

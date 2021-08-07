@@ -1,5 +1,4 @@
 import 'package:dream_app_bloc/presentation/register/register.dart';
-import 'package:dream_app_bloc/presentation/register/view/widget/already_have_account.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +51,7 @@ class RegisterForm extends StatelessWidget {
             hintText: 'Email Address',
           ),
           validator: (value) =>
-              EmailValidator.validate(value) ? null : 'Invalid Email',
+              EmailValidator.validate(value!) ? null : 'Invalid Email',
           onChanged: (value) {
             context
                 .read<RegisterBloc>()
@@ -91,7 +90,7 @@ class RegisterForm extends StatelessWidget {
         ? const CircularProgressIndicator()
         : ElevatedButton(
             onPressed: () {
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 context.read<RegisterBloc>().add(RegisterSubmitted());
               }
             },

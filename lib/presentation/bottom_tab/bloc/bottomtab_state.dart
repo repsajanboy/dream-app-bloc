@@ -9,5 +9,5 @@ class CreateBottomTab extends BottomtabState{
   final int currentIndex;
   final List<BottomTabItemType> items;
 
-  CreateBottomTab({@required this.currentIndex, @required this.items});
+  CreateBottomTab({required this.currentIndex, required this.items});
 }

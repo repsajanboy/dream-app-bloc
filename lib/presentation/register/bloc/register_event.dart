@@ -5,19 +5,19 @@ abstract class RegisterEvent {}
 
 
 class RegisterNameChanged extends RegisterEvent {
-  final String name;
+  final String? name;
 
   RegisterNameChanged({this.name});
 }
 
 class RegisterEmailChanged extends RegisterEvent {
-  final String email;
+  final String? email;
 
   RegisterEmailChanged({this.email});
 }
 
 class RegisterPasswordChanged extends RegisterEvent {
-  final String password;
+  final String? password;
 
   RegisterPasswordChanged({this.password});
 }

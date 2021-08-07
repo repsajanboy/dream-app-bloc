@@ -26,8 +26,6 @@ class BottomtabBloc extends Bloc<BottomtabEvent, BottomtabState> {
   List<BottomTabItemType> _getItems() {
     return [
       BottomTabItemType.home,
-      BottomTabItemType.search,
-      BottomTabItemType.statistic,
       BottomTabItemType.profile,
     ];
   }
