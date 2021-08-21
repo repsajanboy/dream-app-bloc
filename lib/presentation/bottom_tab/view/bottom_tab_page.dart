@@ -1,6 +1,7 @@
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
+import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,7 +71,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
           ),
         ),
         onPressed: () {
-          Navigator.pushNamed(context, "/createlisting");
+          Navigator.pushNamed(context, RouteNames.createDream);
         },
         child: const Icon(Icons.add),
       ),

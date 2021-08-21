@@ -32,9 +32,7 @@ class ApiClient {
       const logoutUrl = "$baseUrl/api/auth/logout";
       final logoutResponse = await _dio.get(
         logoutUrl,
-        options: Options(
-          headers: {"auth-token": token}
-        ),
+        options: Options(headers: {"auth-token": token}),
       );
       return json.decode(logoutResponse.toString());
     } on DioError catch (e) {
@@ -43,17 +41,20 @@ class ApiClient {
   }
 
   Future<dynamic> fetchDreams(String token) async {
-    try{
+    try {
       const dreamsUrl = "$baseUrl/api/dream";
       final dreamsResponse = await _dio.get(
         dreamsUrl,
-        options: Options(
-          headers: {"auth-token": token}
-        ),
+        options: Options(headers: {
+          "auth-token": token,
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        }),
       );
-      final response = json.decode(dreamsResponse.toString()) as List;
+      final toEncode = json.encode(dreamsResponse.data);
+      final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
-    }  on DioError catch (e) {
+    } on DioError catch (e) {
       return json.decode(e.response.toString());
     }
   }

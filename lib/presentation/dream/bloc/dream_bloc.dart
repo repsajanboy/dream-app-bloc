@@ -16,30 +16,27 @@ class DreamBloc extends Bloc<DreamEvent, DreamState> {
   Stream<DreamState> mapEventToState(
     DreamEvent event,
   ) async* {
-    if(event is DreamsFetched){
+    if (event is DreamsFetched) {
       yield await _mapDreamsFetchedToState(state);
     }
   }
 
   Future<DreamState> _mapDreamsFetchedToState(DreamState state) async {
     try {
-    if (state.status == DreamStatus.initial) {
-      // final dreams = await _fetchPosts();
-      // return state.copyWith(
-      //   status: DreamStatus.success,
-      //   dreams: dreams,
-      // );
+      if (state.status == DreamStatus.initial) {
+        final dreams = await dreamRepository.fetchDreams();
+        return state.copyWith(
+          status: DreamStatus.success,
+          dreams: dreams,
+        );
+      }
+      final dreams = await dreamRepository.fetchDreams();
+      return state.copyWith(
+        status: DreamStatus.success,
+        dreams: dreams,
+      );
+    } on Exception {
+      return state.copyWith(status: DreamStatus.error);
     }
-    // final posts = await _fetchPosts(state.posts.length);
-    // return posts.isEmpty
-    //     ? state.copyWith(hasReachedMax: true)
-    //     : state.copyWith(
-    //         status: PostStatus.success,
-    //         posts: List.of(state.posts)..addAll(posts),
-    //         hasReachedMax: false,
-    //       );
-  } on Exception {
-    //return state.copyWith(status: PostStatus.failure);
   }
-}
 }

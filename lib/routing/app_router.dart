@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
+import 'package:dream_app_bloc/presentation/dream/view/create_dream_page.dart';
 import 'package:dream_app_bloc/presentation/landing/landing.dart';
 import 'package:dream_app_bloc/presentation/login/login.dart';
 import 'package:dream_app_bloc/presentation/register/register.dart';
@@ -20,6 +21,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => RegisterPage());
       case RouteNames.menu:
         return MaterialPageRoute(builder: (_) => BottomNavBarPage());
+      case RouteNames.createDream:
+        return MaterialPageRoute(builder: (_) => CreateDreamPage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
