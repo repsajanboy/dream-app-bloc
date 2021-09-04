@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,12 +20,21 @@ class DreamList extends StatelessWidget {
             }
             return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    leading: Text(state.dreams[index].id),
-                    title: Text(state.dreams[index].title),
-                    isThreeLine: true,
-                    subtitle: Text(state.dreams[index].content),
-                    dense: true,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        RouteNames.dream,
+                        arguments: state.dreams[index],
+                      );
+                    },
+                    child: ListTile(
+                      leading: Text(state.dreams[index].id),
+                      title: Text(state.dreams[index].title),
+                      isThreeLine: true,
+                      subtitle: Text(state.dreams[index].content),
+                      dense: true,
+                    ),
                   );
                 },
                 itemCount: state.dreams.length);

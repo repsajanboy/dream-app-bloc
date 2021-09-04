@@ -2,6 +2,7 @@ import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,7 +72,11 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
           ),
         ),
         onPressed: () {
-          Navigator.pushNamed(context, RouteNames.createDream);
+          Navigator.pushNamed(
+            context,
+            RouteNames.upsertDream,
+            arguments: UpsertScreenArgument(false, null),
+          );
         },
         child: const Icon(Icons.add),
       ),
@@ -90,7 +95,8 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
         return BottomTabItem(
             page: ProfilePage(),
             icon: const Icon(Icons.account_circle_outlined, color: Colors.grey),
-            activeIcon: const Icon(Icons.account_circle_outlined, color: Colors.blue),
+            activeIcon:
+                const Icon(Icons.account_circle_outlined, color: Colors.blue),
             title: '');
       default:
         return BottomTabItem(

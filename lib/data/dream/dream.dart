@@ -7,7 +7,7 @@ class Dream {
         required this.category,
         required this.rate,
         required this.user,
-        required this.createDate,
+        required this.inputDate,
     });
 
     String id;
@@ -16,7 +16,7 @@ class Dream {
     String category;
     int rate;
     String user;
-    DateTime createDate;
+    DateTime inputDate;
 
     factory Dream.fromJson(Map<String, dynamic> json) => Dream(
         id: json["id"] as String,
@@ -25,7 +25,7 @@ class Dream {
         category: json["category"] as String,
         rate: json["rate"] as int,
         user: json["user"] as String,
-        createDate: DateTime.parse(json["createDate"].toString()),
+        inputDate: DateTime.parse(json["inputDate"].toString()),
     );
 
     Map<String, dynamic> toJson() => {
@@ -35,6 +35,6 @@ class Dream {
         "category": category,
         "rate": rate,
         "user": user,
-        "createDate": createDate.toIso8601String(),
+        "inputDate": inputDate.toIso8601String(),
     };
 }

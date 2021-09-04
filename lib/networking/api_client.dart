@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dream_app_bloc/data/dream/post_dream.dart';
 
 const baseUrl = "http://10.0.2.2:3000";
 
@@ -52,6 +53,46 @@ class ApiClient {
         }),
       );
       final toEncode = json.encode(dreamsResponse.data);
+      final response = json.decode(toEncode.replaceAll('_id', 'id'));
+      return response;
+    } on DioError catch (e) {
+      return json.decode(e.response.toString());
+    }
+  }
+
+  Future<dynamic> postDream(String token, PostDream postDream) async {
+    try {
+      const postDreamUrl = "$baseUrl/api/dream";
+      final postDreamResponse = await _dio.post(
+        postDreamUrl,
+        options: Options(headers: {
+          "auth-token": token,
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        }),
+        data: postDream.toJson()
+      );
+      final toEncode  = json.encode(postDreamResponse.data);
+      final response = json.decode(toEncode.replaceAll('_id', 'id'));
+      return response;
+    } on DioError catch (e) {
+      return json.decode(e.response.toString());
+    }
+  }
+
+  Future<dynamic> updateDream(String token, PostDream updateDream) async {
+    try{
+      final updateDreamUrl = "$baseUrl/api/dream/${updateDream.id}";
+      final postDreamResponse = await _dio.put(
+        updateDreamUrl,
+        options: Options(headers: {
+          "auth-token": token,
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        }),
+        data: updateDream.toJson()
+      );
+      final toEncode  = json.encode(postDreamResponse.data);
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
     } on DioError catch (e) {

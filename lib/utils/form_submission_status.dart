@@ -15,3 +15,5 @@ class SubmissionFailed extends FormSubmissionStatus {
 
   SubmissionFailed({required this.error});
 }
+
+class FormDoneLoading extends FormSubmissionStatus {}
