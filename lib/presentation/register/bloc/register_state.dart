@@ -1,28 +1,33 @@
 part of 'register_bloc.dart';
 
 class RegisterState {
-  final String name;
-  bool get isNameNotEmpty => name.isNotEmpty;
+  final String firstName;
+  bool get isFirstNameNotEmpty => firstName.isNotEmpty;
+  final String lastName;
+  bool get isLastNameNotEmpty => lastName.isNotEmpty;
   final String email;
   final String password;
   bool get isValidPassword => password.length > 6;
   final FormSubmissionStatus formStatus;
 
   RegisterState({
-    this.name = '',
+    this.firstName = '',
+    this.lastName = '',
     this.email = '',
     this.password = '',
     this.formStatus = const InitialFormStatus(),
   });
 
   RegisterState copyWith({
-    String? name,
+    String? firstName,
+    String? lastName,
     String? email,
     String? password,
     FormSubmissionStatus? formStatus,
   }) {
     return RegisterState(
-      name: name ?? this.name,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       password:  password ?? this.password,
       formStatus: formStatus ?? this.formStatus,

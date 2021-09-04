@@ -16,8 +16,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   Stream<RegisterState> mapEventToState(
     RegisterEvent event,
   ) async* {
-    if(event is RegisterNameChanged){
-      yield state.copyWith(name: event.name);
+    if(event is RegisterFirstNameChanged){
+      yield state.copyWith(firstName: event.firstName);
+    } else if(event is RegisterLastNameChanged){
+      yield state.copyWith(lastName: event.lastName);
     } else if(event is RegisterEmailChanged){
       yield state.copyWith(email: event.email);
     } else if(event is RegisterPasswordChanged){
@@ -25,7 +27,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     } else if(event is RegisterSubmitted){
       yield state.copyWith(formStatus: FormSubmitting());
 
-      final result = await authorizationRepository.register(state.name, state.email, state.password);
+      final result = await authorizationRepository.register(state.firstName, state.lastName, state.email, state.password);
 
       if(result["token"] != null) {
         

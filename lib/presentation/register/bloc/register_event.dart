@@ -4,10 +4,16 @@ part of 'register_bloc.dart';
 abstract class RegisterEvent {}
 
 
-class RegisterNameChanged extends RegisterEvent {
-  final String? name;
+class RegisterFirstNameChanged extends RegisterEvent {
+  final String? firstName;
 
-  RegisterNameChanged({this.name});
+  RegisterFirstNameChanged({this.firstName});
+}
+
+class RegisterLastNameChanged extends RegisterEvent {
+  final String? lastName;
+
+  RegisterLastNameChanged({this.lastName});
 }
 
 class RegisterEmailChanged extends RegisterEvent {

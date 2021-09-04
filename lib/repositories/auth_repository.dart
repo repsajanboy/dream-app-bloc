@@ -24,9 +24,10 @@ class AuthorizationRepository {
     }
   }
 
-  Future<dynamic> register(String name, String email, String password) async {
+  Future<dynamic> register(String firstName, String lastName, String email, String password) async {
     final registerObj = {
-      "name": name,
+      "firstName": firstName,
+      "lastName": lastName,
       "email": email,
       "password": password,
     };

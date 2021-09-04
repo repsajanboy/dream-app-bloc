@@ -10,12 +10,14 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _nameField(),
+            _firstNameField(),
+            _lastNameField(),
             _emailField(),
             _passwordField(),
             _registerButton(context),
@@ -25,17 +27,34 @@ class RegisterForm extends StatelessWidget {
     );
   }
 
-  Widget _nameField() {
+  Widget _firstNameField() {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
         return TextFormField(
           decoration: const InputDecoration(
             icon: Icon(Icons.person),
-            hintText: 'Full Name',
+            hintText: 'First Name',
           ),
-          validator: (value) => state.isNameNotEmpty ? null : 'Please enter your name.',
+          validator: (value) => state.isFirstNameNotEmpty ? null : 'Please enter your name.',
           onChanged: (value) {
-            context.read<RegisterBloc>().add(RegisterNameChanged(name: value));
+            context.read<RegisterBloc>().add(RegisterFirstNameChanged(firstName: value));
+          },
+        );
+      },
+    );
+  }
+
+  Widget _lastNameField() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+      builder: (context, state) {
+        return TextFormField(
+          decoration: const InputDecoration(
+            icon: Icon(Icons.person),
+            hintText: 'Last Name',
+          ),
+          validator: (value) => state.isLastNameNotEmpty ? null : 'Please enter your name.',
+          onChanged: (value) {
+            context.read<RegisterBloc>().add(RegisterLastNameChanged(lastName: value));
           },
         );
       },
