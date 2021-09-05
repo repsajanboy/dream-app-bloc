@@ -14,7 +14,8 @@ class ApiClient {
       final loginResponse = await _dio.post(loginUrl, data: loginCredentials);
       return json.decode(loginResponse.toString());
     } on DioError catch (e) {
-      return json.decode(e.response.toString());
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 
@@ -24,7 +25,8 @@ class ApiClient {
       final registerResponse = await _dio.post(registerUrl, data: registerObj);
       return json.decode(registerResponse.toString());
     } on DioError catch (e) {
-      return json.decode(e.response.toString());
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 
@@ -37,7 +39,8 @@ class ApiClient {
       );
       return json.decode(logoutResponse.toString());
     } on DioError catch (e) {
-      return json.decode(e.response.toString());
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 
@@ -56,7 +59,8 @@ class ApiClient {
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
     } on DioError catch (e) {
-      return json.decode(e.response.toString());
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 
@@ -76,7 +80,8 @@ class ApiClient {
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
     } on DioError catch (e) {
-      return json.decode(e.response.toString());
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 
@@ -96,7 +101,8 @@ class ApiClient {
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
     } on DioError catch (e) {
-      return json.decode(e.response.toString());
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 }

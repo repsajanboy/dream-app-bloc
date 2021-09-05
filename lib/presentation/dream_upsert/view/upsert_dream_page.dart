@@ -7,6 +7,7 @@ import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import '../upsert_dream.dart';
@@ -72,8 +73,11 @@ class UpsertDreamPage extends StatelessWidget {
             context.loaderOverlay.show();
           } else if (formStatus is SubmissionSuccess) {
             Navigator.pushReplacementNamed(context, RouteNames.menu);
-          } else if (formStatus is FormDoneLoading) {
-            context.loaderOverlay.hide();
+          } else if (formStatus is SubmissionFailed) {
+            Fluttertoast.showToast(
+              msg: formStatus.error.toString(),
+              gravity: ToastGravity.BOTTOM,
+            );
           }
         },
         child: LoaderOverlay(

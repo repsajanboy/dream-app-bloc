@@ -17,13 +17,13 @@ class LoginPage extends StatelessWidget {
       child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           final formStatus = state.formStatus;
-          if(formStatus is SubmissionSuccess){
+          if (formStatus is SubmissionSuccess) {
             Navigator.pushReplacementNamed(context, RouteNames.menu);
-          } else if (formStatus is SubmissionFailed){
+          } else if (formStatus is SubmissionFailed) {
             Fluttertoast.showToast(
-            msg: formStatus.error,
-            gravity: ToastGravity.BOTTOM,
-          );
+              msg: formStatus.error.toString(),
+              gravity: ToastGravity.BOTTOM,
+            );
           }
         },
         child: LoginForm(),

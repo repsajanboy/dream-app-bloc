@@ -38,29 +38,35 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
           category: state.category,
           rate: state.rate,
           inputDate: state.inputDate);
+      try {
+        await dreamRepository.postDream(postDream);
 
-      final postedDream = await dreamRepository.postDream(postDream);
-
-      yield state.copyWith(formStatus: SubmissionSuccess());
+        yield state.copyWith(formStatus: SubmissionSuccess());
+      } on Exception catch (e) {
+        yield state.copyWith(formStatus: SubmissionFailed(e));
+      }
     } else if (event is UpsertEditSaved) {
       yield state.copyWith(formStatus: FormSubmitting());
       final updateDream = PostDream(
-        id: state.id,
-        title: state.title,
-        content: state.content,
-        category: state.category,
-        rate: state.rate,
-        inputDate: state.inputDate,
-        updateDate: DateTime.now()
-      );
-      final updatedDream = await dreamRepository.updateDream(updateDream);
+          id: state.id,
+          title: state.title,
+          content: state.content,
+          category: state.category,
+          rate: state.rate,
+          inputDate: state.inputDate,
+          updateDate: DateTime.now());
+      try {
+        await dreamRepository.updateDream(updateDream);
 
-      yield state.copyWith(formStatus: SubmissionSuccess());
+        yield state.copyWith(formStatus: SubmissionSuccess());
+      } on Exception catch (e) {
+        yield state.copyWith(formStatus: SubmissionFailed(e));
+      }
     } else if (event is UpsertPageViewIndexChanged) {
       yield state.copyWith(pageViewIndex: event.pageViewIndex);
     } else if (event is UpsertCategoriesIndexChanged) {
       yield state.copyWith(categoriesIndex: event.categoriesIndex);
-    } else if (event is UpsertToEdit){
+    } else if (event is UpsertToEdit) {
       final editState = UpsertDreamState(
         id: event.postDream.id,
         title: event.postDream.title,

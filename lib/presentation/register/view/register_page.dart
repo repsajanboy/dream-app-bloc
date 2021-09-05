@@ -22,7 +22,7 @@ class RegisterPage extends StatelessWidget {
               Navigator.pushReplacementNamed(context, RouteNames.menu);
             } else if (formStatus is SubmissionFailed) {
               Fluttertoast.showToast(
-                msg: formStatus.error,
+                msg: formStatus.error.toString(),
                 gravity: ToastGravity.BOTTOM,
               );
             }
