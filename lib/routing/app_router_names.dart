@@ -6,4 +6,5 @@ class RouteNames {
   static const String landing = "/landing";
   static const String dream = "/dream";
   static const String upsertDream = "/upsertDream";
+  static const String setting = "/setting";
 }

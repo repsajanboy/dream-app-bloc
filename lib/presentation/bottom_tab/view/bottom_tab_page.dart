@@ -1,6 +1,7 @@
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
+import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,17 @@ class BottomNavBarPage extends StatefulWidget {
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BottomtabBloc()..add(InitialBottomTab()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BottomtabBloc()..add(InitialBottomTab()),
+        ),
+        BlocProvider(
+          create: (context) => DreamBloc(
+            dreamRepository: context.read<DreamRepository>(),
+          )..add(DreamsFetched()),
+        ),
+      ],
       child: BlocBuilder<BottomtabBloc, BottomtabState>(
         builder: (context, state) {
           if (state is CreateBottomTab) {

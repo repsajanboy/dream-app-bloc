@@ -4,6 +4,7 @@ import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/landing/landing.dart';
 import 'package:dream_app_bloc/presentation/login/login.dart';
+import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/presentation/register/register.dart';
 import 'package:dream_app_bloc/presentation/splash/splash.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
@@ -46,6 +47,8 @@ class AppRouter {
             dream: dream,
           ),
         );
+      case RouteNames.setting:
+        return MaterialPageRoute(builder: (_) => const ProfileSettingPage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

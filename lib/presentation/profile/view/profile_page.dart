@@ -1,5 +1,6 @@
-import 'package:dream_app_bloc/authentication/authentication.dart';
-import 'package:dream_app_bloc/repositories/auth_repository.dart';
+import 'package:dream_app_bloc/presentation/dream/dream.dart';
+import 'package:dream_app_bloc/presentation/profile/profile.dart';
+import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,40 +9,72 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => AuthenticationBloc(
-            authorizationRepository: context.read<AuthorizationRepository>()),
-        child: BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-            if (state is AuthenticationUnauthenticated) {
-              Navigator.pushReplacementNamed(context, RouteNames.splash);
-            }
-          },
-          child: Center(
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ProfileBloc(
+              userRepository: context.read<UserRepository>(),
+            )..add(const ProfileFetched()),
+          )
+        ],
+        child: SafeArea(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Profile Page'),
-                _logoutButton(context),
+                _header(),
+                _dreamsCount(),
               ],
             ),
           ),
-        ),
       ),
     );
   }
 
-  Widget _logoutButton(context) {
-    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+  Widget _header() {
+    return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        return state is AuthenticationLoading
-            ? const CircularProgressIndicator()
-            : ElevatedButton(
-                onPressed: () {
-                  context.read<AuthenticationBloc>().add(LogOut());
-                },
-                child: const Text('Log Out'));
+        if(state is ProfileFetchedSuccess){
+          return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom:
+                      BorderSide(width: 1.5, color: Colors.lightBlue.shade600),
+                  right:
+                      BorderSide(width: 1.5, color: Colors.lightBlue.shade900),
+                ),
+                color: Colors.white,
+              ),
+              child: Text(
+                  '${state.user.firstName[0]}${state.user.lastName[0]}'),
+            ),
+            Text(state.user.firstName),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.setting);
+              },
+              child: const Text('Settings'),
+            )
+          ],
+        );
+        } else {
+          return Container();
+        }
       },
     );
   }
+
+  Widget _dreamsCount() {
+    return BlocConsumer<DreamBloc, DreamState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Text(state.dreams.length.toString());
+      },
+    );
+  }
+
+
 }

@@ -94,7 +94,7 @@ class UpsertDreamPage extends StatelessWidget {
               children: [
                 ContentFormWidget(
                   isEditing: isEditing,
-                  content: dream!.content,
+                  content: isEditing ? dream!.content : '',
                 ),
                 CategoriesWidget(isEditing: isEditing),
                 RatingWidget(isEditing: isEditing),

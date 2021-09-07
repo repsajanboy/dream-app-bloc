@@ -7,11 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class DreamsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => DreamBloc(dreamRepository: context.read<DreamRepository>())..add(DreamsFetched()),
-        child: const DreamList(),
-      ),
+    return const Scaffold(
+      body: DreamList(),
     );
   }
 }
