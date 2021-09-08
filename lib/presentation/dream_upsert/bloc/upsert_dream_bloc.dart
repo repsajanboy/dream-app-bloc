@@ -43,7 +43,7 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
 
         yield state.copyWith(formStatus: SubmissionSuccess());
       } on Exception catch (e) {
-        yield state.copyWith(formStatus: SubmissionFailed(e));
+        yield state.copyWith(formStatus: SubmissionFailed(error: e.toString()));
       }
     } else if (event is UpsertEditSaved) {
       yield state.copyWith(formStatus: FormSubmitting());
@@ -60,7 +60,7 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
 
         yield state.copyWith(formStatus: SubmissionSuccess());
       } on Exception catch (e) {
-        yield state.copyWith(formStatus: SubmissionFailed(e));
+        yield state.copyWith(formStatus: SubmissionFailed(error: e.toString()));
       }
     } else if (event is UpsertPageViewIndexChanged) {
       yield state.copyWith(pageViewIndex: event.pageViewIndex);

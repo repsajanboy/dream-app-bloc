@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Dream App',
-        theme: ThemeData(),
+        theme: ThemeData(fontFamily: 'Circular'),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: router.onGenerateRoute,
       ),

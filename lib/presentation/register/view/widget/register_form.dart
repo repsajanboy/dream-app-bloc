@@ -1,26 +1,29 @@
 import 'package:dream_app_bloc/presentation/register/register.dart';
-import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 
 class RegisterForm extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey;
+
+  const RegisterForm({Key? key, required this.formKey}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: formKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _firstNameField(),
+            const SizedBox(height: 10.0),
             _lastNameField(),
+            const SizedBox(height: 10.0),
             _emailField(),
+            const SizedBox(height: 10.0),
             _passwordField(),
-            _registerButton(context),
           ],
         ),
       ),
@@ -30,15 +33,31 @@ class RegisterForm extends StatelessWidget {
   Widget _firstNameField() {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
-        return TextFormField(
-          decoration: const InputDecoration(
-            icon: Icon(Icons.person),
-            hintText: 'First Name',
+        return Container(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Colors.indigo.shade800.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(18.0),
           ),
-          validator: (value) => state.isFirstNameNotEmpty ? null : 'Please enter your name.',
-          onChanged: (value) {
-            context.read<RegisterBloc>().add(RegisterFirstNameChanged(firstName: value));
-          },
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.white,
+            style: context.typo.authTextField(),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'First Name',
+              hintStyle: context.typo.authHintStyle(),
+              errorStyle: context.typo.authErrorStyle(),
+            ),
+            validator: (value) => state.isFirstNameNotEmpty
+                ? null
+                : 'Please enter your first name.',
+            onChanged: (value) {
+              context
+                  .read<RegisterBloc>()
+                  .add(RegisterFirstNameChanged(firstName: value));
+            },
+          ),
         );
       },
     );
@@ -47,15 +66,31 @@ class RegisterForm extends StatelessWidget {
   Widget _lastNameField() {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
-        return TextFormField(
-          decoration: const InputDecoration(
-            icon: Icon(Icons.person),
-            hintText: 'Last Name',
+        return Container(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Colors.indigo.shade800.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(18.0),
           ),
-          validator: (value) => state.isLastNameNotEmpty ? null : 'Please enter your name.',
-          onChanged: (value) {
-            context.read<RegisterBloc>().add(RegisterLastNameChanged(lastName: value));
-          },
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.white,
+            style: context.typo.authTextField(),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Last Name',
+              hintStyle: context.typo.authHintStyle(),
+              errorStyle: context.typo.authErrorStyle(),
+            ),
+            validator: (value) => state.isLastNameNotEmpty
+                ? null
+                : 'Please enter your last name.',
+            onChanged: (value) {
+              context
+                  .read<RegisterBloc>()
+                  .add(RegisterLastNameChanged(lastName: value));
+            },
+          ),
         );
       },
     );
@@ -64,18 +99,30 @@ class RegisterForm extends StatelessWidget {
   Widget _emailField() {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
-        return TextFormField(
-          decoration: const InputDecoration(
-            icon: Icon(Icons.email),
-            hintText: 'Email Address',
+        return Container(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Colors.indigo.shade800.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(18.0),
           ),
-          validator: (value) =>
-              EmailValidator.validate(value!) ? null : 'Invalid Email',
-          onChanged: (value) {
-            context
-                .read<RegisterBloc>()
-                .add(RegisterEmailChanged(email: value));
-          },
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.white,
+            style: context.typo.authTextField(),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Email Address',
+              hintStyle: context.typo.authHintStyle(),
+              errorStyle: context.typo.authErrorStyle(),
+            ),
+            validator: (value) =>
+                EmailValidator.validate(value!) ? null : 'Invalid Email',
+            onChanged: (value) {
+              context
+                  .read<RegisterBloc>()
+                  .add(RegisterEmailChanged(email: value));
+            },
+          ),
         );
       },
     );
@@ -84,36 +131,42 @@ class RegisterForm extends StatelessWidget {
   Widget _passwordField() {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
-        return TextFormField(
-          decoration: const InputDecoration(
-            icon: Icon(Icons.security),
-            hintText: 'Password',
+        return Container(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Colors.indigo.shade800.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(18.0),
           ),
-          obscureText: true,
-          validator: (value) =>
-              state.isValidPassword ? null : 'Password is too short',
-          onChanged: (value) {
-            context
-                .read<RegisterBloc>()
-                .add(RegisterPasswordChanged(password: value));
-          },
-        );
-      },
-    );
-  }
-
-  Widget _registerButton(context) {
-    return BlocBuilder<RegisterBloc, RegisterState>(
-      builder: (context, state) {
-        return state.formStatus is FormSubmitting
-        ? const CircularProgressIndicator()
-        : ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                context.read<RegisterBloc>().add(RegisterSubmitted());
-              }
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.white,
+            style: context.typo.authTextField(),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Password',
+              hintStyle: context.typo.authHintStyle(),
+              errorStyle: context.typo.authErrorStyle(),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  context.read<RegisterBloc>().add(RegisterObscureTextChanged(
+                      isObscureText: !state.isObscureText));
+                },
+                icon: Icon(
+                  state.isObscureText ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.white70,
+                ),
+              ),
+            ),
+            obscureText: state.isObscureText,
+            validator: (value) =>
+                state.isValidPassword ? null : 'Password is too short',
+            onChanged: (value) {
+              context
+                  .read<RegisterBloc>()
+                  .add(RegisterPasswordChanged(password: value));
             },
-            child: const Text('Register'));
+          ),
+        );
       },
     );
   }

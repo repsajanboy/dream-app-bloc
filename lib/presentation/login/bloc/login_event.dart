@@ -18,3 +18,9 @@ class LoginPasswordChanged extends LoginEvent {
 class LoginSubmitted extends LoginEvent {
   
 }
+
+class LoginObscureTextChanged extends LoginEvent {
+  final bool? isObscureText;
+
+  LoginObscureTextChanged({this.isObscureText});
+}

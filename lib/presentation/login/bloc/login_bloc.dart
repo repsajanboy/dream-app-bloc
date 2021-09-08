@@ -28,8 +28,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await authorizationRepository.login(state.email, state.password);
         yield state.copyWith(formStatus: SubmissionSuccess());
       } on Exception catch (e) {
-        yield state.copyWith(formStatus: SubmissionFailed(e));
+        yield state.copyWith(formStatus: SubmissionFailed(error: e.toString()));
       }
+    } else if (event is LoginObscureTextChanged){
+      yield state.copyWith(isObscureText: event.isObscureText);
     }
   }
 }

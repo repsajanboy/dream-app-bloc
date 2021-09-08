@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:dream_app_bloc/utils/extension/string_extension.dart';
 
 import '../upsert_dream.dart';
 
@@ -75,9 +76,12 @@ class UpsertDreamPage extends StatelessWidget {
             Navigator.pushReplacementNamed(context, RouteNames.menu);
           } else if (formStatus is SubmissionFailed) {
             Fluttertoast.showToast(
-              msg: formStatus.error.toString(),
-              gravity: ToastGravity.BOTTOM,
-            );
+                msg: formStatus.error!.errorMessage(),
+                gravity: ToastGravity.TOP,
+                toastLength: Toast.LENGTH_LONG,
+                backgroundColor: Colors.red,
+                textColor: Colors.white
+              );
           }
         },
         child: LoaderOverlay(

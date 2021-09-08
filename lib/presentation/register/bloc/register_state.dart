@@ -8,6 +8,7 @@ class RegisterState {
   final String email;
   final String password;
   bool get isValidPassword => password.length > 6;
+  bool isObscureText;
   final FormSubmissionStatus formStatus;
 
   RegisterState({
@@ -16,6 +17,7 @@ class RegisterState {
     this.email = '',
     this.password = '',
     this.formStatus = const InitialFormStatus(),
+    this.isObscureText = false,
   });
 
   RegisterState copyWith({
@@ -24,6 +26,7 @@ class RegisterState {
     String? email,
     String? password,
     FormSubmissionStatus? formStatus,
+    bool? isObscureText,
   }) {
     return RegisterState(
       firstName: firstName ?? this.firstName,
@@ -31,6 +34,7 @@ class RegisterState {
       email: email ?? this.email,
       password:  password ?? this.password,
       formStatus: formStatus ?? this.formStatus,
+      isObscureText: isObscureText ?? this.isObscureText,
     );
   }
 }

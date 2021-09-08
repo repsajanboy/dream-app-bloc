@@ -32,8 +32,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             state.firstName, state.lastName, state.email, state.password);
         yield state.copyWith(formStatus: SubmissionSuccess());
       } on Exception catch (e) {
-        yield state.copyWith(formStatus: SubmissionFailed(e));
+        yield state.copyWith(formStatus: SubmissionFailed(error: e.toString()));
       }
+    } else if (event is RegisterObscureTextChanged){
+      yield state.copyWith(isObscureText: event.isObscureText);
     }
   }
 }

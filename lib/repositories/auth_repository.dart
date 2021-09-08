@@ -10,7 +10,7 @@ class AuthorizationRepository {
 
   Future<bool> checkUser() async {
     final hasUser = await _sharedPref.isExisting("token");
-    return Future.delayed(const Duration(seconds: 5), () => hasUser);
+    return hasUser;
   }
 
   Future<dynamic> login(String email, String password) async {

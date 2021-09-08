@@ -31,3 +31,9 @@ class RegisterPasswordChanged extends RegisterEvent {
 class RegisterSubmitted extends RegisterEvent {
   
 }
+
+class RegisterObscureTextChanged extends RegisterEvent{
+  final bool? isObscureText;
+
+  RegisterObscureTextChanged({this.isObscureText});
+}
