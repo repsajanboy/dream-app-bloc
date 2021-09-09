@@ -9,23 +9,14 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => ProfileBloc(
-              userRepository: context.read<UserRepository>(),
-            )..add(const ProfileFetched()),
-          )
-        ],
-        child: SafeArea(
-            child: Column(
-              children: [
-                _header(),
-                _dreamsCount(),
-              ],
-            ),
+      body: SafeArea(
+          child: Column(
+            children: [
+              _header(),
+              _dreamsCount(),
+            ],
           ),
-      ),
+        ),
     );
   }
 

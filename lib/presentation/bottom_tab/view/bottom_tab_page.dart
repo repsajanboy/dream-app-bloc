@@ -2,6 +2,7 @@ import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
+import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
@@ -24,7 +25,12 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
         BlocProvider(
           create: (context) => DreamBloc(
             dreamRepository: context.read<DreamRepository>(),
-          )..add(DreamsFetched()),
+          )..add(const DreamsFetched()),
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(
+            userRepository: context.read<UserRepository>(),
+          )..add(const ProfileFetched()),
         ),
       ],
       child: BlocBuilder<BottomtabBloc, BottomtabState>(

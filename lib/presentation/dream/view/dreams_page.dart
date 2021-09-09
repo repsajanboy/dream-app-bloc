@@ -1,6 +1,8 @@
 import 'package:dream_app_bloc/presentation/dream/view/widget/dream_list.dart';
+import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DreamsPage extends StatelessWidget {
   @override
@@ -32,13 +34,21 @@ class DreamsPage extends StatelessWidget {
               color: Colors.black38,
             ),
           ),
-          const Text(
-            'Jasper Janboy',
-            style: TextStyle(
-              fontSize: 28.0,
-              fontWeight: FontWeight.bold,
-              color: AppColors.dreams,
-            ),
+          BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              if (state is ProfileFetchedSuccess) {
+                return Text(
+                  state.user.firstName,
+                  style: const TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.dreams,
+                  ),
+                );
+              } else {
+                return Container();
+              }
+            },
           ),
         ],
       ),
@@ -46,7 +56,7 @@ class DreamsPage extends StatelessWidget {
   }
 
   String greetingMessage() {
-    final timeNow = DateTime.now().hour;
+    final timeNow = DateTime.now().toLocal().hour;
 
     if (timeNow <= 12) {
       return 'Good Morning';
