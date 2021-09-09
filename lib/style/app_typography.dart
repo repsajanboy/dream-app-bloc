@@ -28,4 +28,19 @@ class AppTextStyle {
       fontSize: 16.0,
     );
   }
+
+  TextStyle dreamCountStyle() {
+    return const TextStyle(
+      fontWeight: FontWeight.w500,
+      color: Colors.black,
+      fontSize: 28.0,
+    );
+  }
+
+  TextStyle dreamCountLableStyle() {
+    return const TextStyle(
+      color: Colors.black45,
+      fontWeight: FontWeight.w500,
+    );
+  }
 }
