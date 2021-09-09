@@ -3,6 +3,7 @@ import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
   Widget _buildTab(BuildContext context, CreateBottomTab state) {
     final items = state.items.map((type) => _getItem(type));
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: IndexedStack(
         index: state.currentIndex,
         children: items.map((e) => e.page).toList(),
@@ -54,28 +56,40 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
               blurRadius: 20,
             ),
           ],
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
         ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          elevation: 10,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          currentIndex: state.currentIndex,
-          onTap: (int index) {
-            BlocProvider.of<BottomtabBloc>(context)
-                .add(BottomTabChanged(index));
-          },
-          items: items
-              .map((e) => BottomNavigationBarItem(
-                  icon: e.icon, label: e.title, activeIcon: e.activeIcon))
-              .toList(),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.white,
+            elevation: 10,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
+            currentIndex: state.currentIndex,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            onTap: (int index) {
+              BlocProvider.of<BottomtabBloc>(context)
+                  .add(BottomTabChanged(index));
+            },
+            items: items
+                .map((e) => BottomNavigationBarItem(
+                    icon: e.icon, label: e.title, activeIcon: e.activeIcon))
+                .toList(),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         // isExtended: true,
-        backgroundColor: const Color(0xff023563),
+        backgroundColor: Colors.indigoAccent,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(16.0),
@@ -88,7 +102,10 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
             arguments: UpsertScreenArgument(false, null),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          size: 32.0,
+        ),
       ),
     );
   }
@@ -98,15 +115,30 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
       case BottomTabItemType.home:
         return BottomTabItem(
             page: DreamsPage(),
-            icon: const Icon(Icons.home, color: Colors.grey),
-            activeIcon: const Icon(Icons.home, color: Colors.blue),
+            icon: const Icon(
+              Icons.view_day_outlined,
+              color: Colors.black38,
+              size: 32,
+            ),
+            activeIcon: const Icon(
+              Icons.view_day_outlined,
+              color: AppColors.dreams,
+              size: 32.0,
+            ),
             title: '');
       case BottomTabItemType.profile:
         return BottomTabItem(
             page: ProfilePage(),
-            icon: const Icon(Icons.account_circle_outlined, color: Colors.grey),
-            activeIcon:
-                const Icon(Icons.account_circle_outlined, color: Colors.blue),
+            icon: const Icon(
+              Icons.person_outlined,
+              color: Colors.black38,
+              size: 32,
+            ),
+            activeIcon: const Icon(
+              Icons.person_outlined,
+              color: AppColors.dreams,
+              size: 32,
+            ),
             title: '');
       default:
         return BottomTabItem(

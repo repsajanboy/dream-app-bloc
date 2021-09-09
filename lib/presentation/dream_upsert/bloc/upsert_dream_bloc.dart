@@ -73,7 +73,7 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
         content: event.postDream.content,
         inputDate: event.postDream.inputDate,
         category: event.postDream.category,
-        rate: event.postDream.rate,
+        //rate: event.postDream.rate,
       );
       yield editState;
     }
