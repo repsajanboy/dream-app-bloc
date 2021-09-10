@@ -13,6 +13,9 @@ class ProfileFetchedSuccess extends ProfileState {
   final User user;
 
   const ProfileFetchedSuccess({required this.user});
+
+  @override
+  List<Object> get props => [user];
 }
 
 class ProfileFetchedError extends ProfileState {}

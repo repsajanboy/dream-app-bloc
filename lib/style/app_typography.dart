@@ -43,4 +43,12 @@ class AppTextStyle {
       fontWeight: FontWeight.w500,
     );
   }
+
+  TextStyle editProfileStyle(){
+    return const TextStyle(
+      color: Colors.white,
+      fontSize: 18.0,
+      fontWeight: FontWeight.w500,
+    );
+  }
 }

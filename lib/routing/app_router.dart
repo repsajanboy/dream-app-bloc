@@ -48,7 +48,39 @@ class AppRouter {
           ),
         );
       case RouteNames.setting:
-        return MaterialPageRoute(builder: (_) => const ProfileSettingPage());
+        return PageRouteBuilder(
+          settings:
+              routeSettings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) =>
+              const ProfileSettingPage(),
+          transitionsBuilder: (BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return Stack(
+              children: <Widget>[
+                SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0.0, 0.0),
+                    end: const Offset(-1.0, 0.0),
+                  ).animate(animation),
+                  child: BottomNavBarPage(),
+                ),
+                SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: const ProfileSettingPage(),
+                )
+              ],
+            );
+          },
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
