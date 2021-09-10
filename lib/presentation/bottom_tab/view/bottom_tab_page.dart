@@ -17,30 +17,33 @@ class BottomNavBarPage extends StatefulWidget {
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => BottomtabBloc()..add(InitialBottomTab()),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => BottomtabBloc()..add(InitialBottomTab()),
+          ),
+          BlocProvider(
+            create: (context) => DreamBloc(
+              dreamRepository: context.read<DreamRepository>(),
+            )..add(const DreamsFetched()),
+          ),
+          BlocProvider(
+            create: (context) => ProfileBloc(
+              userRepository: context.read<UserRepository>(),
+            )..add(const ProfileFetched()),
+          ),
+        ],
+        child: BlocBuilder<BottomtabBloc, BottomtabState>(
+          builder: (context, state) {
+            if (state is CreateBottomTab) {
+              return _buildTab(context, state);
+            } else {
+              return Container();
+            }
+          },
         ),
-        BlocProvider(
-          create: (context) => DreamBloc(
-            dreamRepository: context.read<DreamRepository>(),
-          )..add(const DreamsFetched()),
-        ),
-        BlocProvider(
-          create: (context) => ProfileBloc(
-            userRepository: context.read<UserRepository>(),
-          )..add(const ProfileFetched()),
-        ),
-      ],
-      child: BlocBuilder<BottomtabBloc, BottomtabState>(
-        builder: (context, state) {
-          if (state is CreateBottomTab) {
-            return _buildTab(context, state);
-          } else {
-            return Container();
-          }
-        },
       ),
     );
   }

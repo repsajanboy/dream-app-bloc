@@ -12,52 +12,55 @@ class ProfileSettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => AuthenticationBloc(
-              authorizationRepository: context.read<AuthorizationRepository>(),
-            ),
-          ),
-          BlocProvider(
-            create: (context) =>
-                ProfileBloc(userRepository: context.read<UserRepository>())
-                  ..add(const ProfileFetched()),
-          ),
-        ],
-        child: BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-            if (state is AuthenticationUnauthenticated) {
-              Navigator.pushReplacementNamed(context, RouteNames.splash);
-            }
-          },
-          child: Container(
-            height: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.indigoAccent,
-                  Colors.indigo.shade900,
-                ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => AuthenticationBloc(
+                authorizationRepository: context.read<AuthorizationRepository>(),
               ),
             ),
-            child: SafeArea(
-              child: Stack(
-                children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _header(context),
-                        const EditProfileForm(),
-                        _logoutButton(context),
-                      ],
+            BlocProvider(
+              create: (context) =>
+                  ProfileBloc(userRepository: context.read<UserRepository>())
+                    ..add(const ProfileFetched()),
+            ),
+          ],
+          child: BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (context, state) {
+              if (state is AuthenticationUnauthenticated) {
+                Navigator.pushReplacementNamed(context, RouteNames.splash);
+              }
+            },
+            child: Container(
+              height: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    Colors.indigoAccent,
+                    Colors.indigo.shade900,
+                  ],
+                ),
+              ),
+              child: SafeArea(
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _header(context),
+                          const EditProfileForm(),
+                          _logoutButton(context),
+                        ],
+                      ),
                     ),
-                  ),
-                  _backButton(context),
-                ],
+                    _backButton(context),
+                  ],
+                ),
               ),
             ),
           ),

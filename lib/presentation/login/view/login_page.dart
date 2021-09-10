@@ -19,48 +19,51 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     final bool visible = !(reversed ? !_keyboardVisible : _keyboardVisible);
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => LoginBloc(
-            authorizationRepository: context.read<AuthorizationRepository>()),
-        child: BlocListener<LoginBloc, LoginState>(
-          listener: (context, state) {
-            final formStatus = state.formStatus;
-            if (formStatus is SubmissionSuccess) {
-              Navigator.pushReplacementNamed(context, RouteNames.menu);
-            } else if (formStatus is SubmissionFailed) {
-              Fluttertoast.showToast(
-                msg: formStatus.error!.errorMessage(),
-                gravity: ToastGravity.TOP,
-                toastLength: Toast.LENGTH_LONG,
-                backgroundColor: Colors.red,
-                textColor: Colors.white
-              );
-            }
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.indigoAccent,
-                  Colors.indigo.shade900,
-                ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: BlocProvider(
+          create: (context) => LoginBloc(
+              authorizationRepository: context.read<AuthorizationRepository>()),
+          child: BlocListener<LoginBloc, LoginState>(
+            listener: (context, state) {
+              final formStatus = state.formStatus;
+              if (formStatus is SubmissionSuccess) {
+                Navigator.pushReplacementNamed(context, RouteNames.menu);
+              } else if (formStatus is SubmissionFailed) {
+                Fluttertoast.showToast(
+                  msg: formStatus.error!.errorMessage(),
+                  gravity: ToastGravity.TOP,
+                  toastLength: Toast.LENGTH_LONG,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white
+                );
+              }
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    Colors.indigoAccent,
+                    Colors.indigo.shade900,
+                  ],
+                ),
               ),
-            ),
-            child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LoginHeader(visible: visible,),
-                  LoginForm(
-                    formKey: _formKey,
-                  ),
-                  LoginButtonMD(
-                    formKey: _formKey,
-                  ),
-                ],
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LoginHeader(visible: visible,),
+                    LoginForm(
+                      formKey: _formKey,
+                    ),
+                    LoginButtonMD(
+                      formKey: _formKey,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
