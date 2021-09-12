@@ -1,7 +1,7 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
-import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
+import 'package:dream_app_bloc/utils/navigator_arguments/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

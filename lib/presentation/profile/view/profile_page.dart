@@ -4,6 +4,7 @@ import 'package:dream_app_bloc/presentation/profile/view/widgets/dream_quote.dar
 import 'package:dream_app_bloc/presentation/profile/view/widgets/rate_contact.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
+import 'package:dream_app_bloc/utils/navigator_arguments/profile_setting_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
@@ -12,6 +13,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: Column(
@@ -29,7 +31,7 @@ class ProfilePage extends StatelessWidget {
   Widget _header() {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        if (state is ProfileFetchedSuccess) {
+        if (state is ProfileFetchedLoaded) {
           return SizedBox(
             height: 150.0,
             child: Row(
@@ -78,22 +80,31 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.topRight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, RouteNames.setting);
+                  child: BlocBuilder<ProfileBloc, ProfileState>(
+                    builder: (context, state) {
+                      if (state is ProfileFetchedLoaded) {
+                        return ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, RouteNames.setting,
+                                arguments: ProfileSettingArguments(state.user));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.indigoAccent,
+                            onPrimary: Colors.white,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(18.0),
+                                bottomLeft: Radius.circular(18.0),
+                              ),
+                            ),
+                            shadowColor: Colors.black,
+                          ),
+                          child: const Icon(Icons.settings),
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
                     },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.indigoAccent,
-                      onPrimary: Colors.white,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(18.0),
-                          bottomLeft: Radius.circular(18.0),
-                        ),
-                      ),
-                      shadowColor: Colors.black,
-                    ),
-                    child: const Icon(Icons.settings),
                   ),
                 )
               ],

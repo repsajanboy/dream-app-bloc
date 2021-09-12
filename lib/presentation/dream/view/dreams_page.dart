@@ -36,7 +36,7 @@ class DreamsPage extends StatelessWidget {
           ),
           BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
-              if (state is ProfileFetchedSuccess) {
+              if (state is ProfileFetchedLoaded) {
                 return Text(
                   state.user.firstName,
                   style: const TextStyle(

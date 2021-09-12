@@ -122,4 +122,28 @@ class ApiClient {
       throw Exception(err['msg']);
     }
   }
+
+  Future<dynamic> updateProfileDetails(
+    String token,
+    Map<String, dynamic> userDetails,
+  ) async {
+    try {
+      const profileUpdateUrl = '$baseUrl/api/user/';
+      final profileUpdateResponse = await _dio.put(
+        profileUpdateUrl,
+        options: Options(
+          headers: {
+            "auth-token": token,
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Charset': 'utf-8'
+          },
+        ),
+        data: userDetails,
+      );
+      return json.decode(profileUpdateResponse.toString());
+    } on DioError catch (e) {
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
+    }
+  }
 }

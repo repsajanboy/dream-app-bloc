@@ -16,7 +16,7 @@ class BottomtabBloc extends Bloc<BottomtabEvent, BottomtabState> {
     BottomtabEvent event,
   ) async* {
     if (event is InitialBottomTab) {
-      yield CreateBottomTab(currentIndex: currentIndex, items: _getItems());
+      yield CreateBottomTab(currentIndex: event.index, items: _getItems());
     } else if(event is BottomTabChanged) {
       currentIndex = event.index;
       yield CreateBottomTab(currentIndex: currentIndex, items: _getItems());

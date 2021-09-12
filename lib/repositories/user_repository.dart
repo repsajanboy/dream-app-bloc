@@ -15,4 +15,12 @@ class UserRepository {
     final result = await apiClient.getUserDetails(token);
     return User.fromJson(result as Map<String, dynamic>);
   }
+
+  Future<User> updateProfileDetails(Map<String, dynamic> userDetails) async {
+    String token = (await _sharedPref.readStr("token"))!;
+    token = token.replaceAll('"', '').trim();
+
+    final result = await apiClient.updateProfileDetails(token, userDetails);
+    return User.fromJson(result as Map<String, dynamic>);
+  }
 }

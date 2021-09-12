@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
             listener: (context, state) {
               final formStatus = state.formStatus;
               if (formStatus is SubmissionSuccess) {
-                Navigator.pushReplacementNamed(context, RouteNames.menu);
+                Navigator.pushReplacementNamed(context, RouteNames.menu, arguments: 0);
               } else if (formStatus is SubmissionFailed) {
                 Fluttertoast.showToast(
                   msg: formStatus.error!.errorMessage(),

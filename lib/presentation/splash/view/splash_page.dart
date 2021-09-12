@@ -30,7 +30,7 @@ class _SplashViewState extends State<SplashView> {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthenticationAuthenticated) {
-          Navigator.pushReplacementNamed(context, RouteNames.menu);
+          Navigator.pushReplacementNamed(context, RouteNames.menu, arguments: 0);
         } else if (state is AuthenticationUnauthenticated) {
           Navigator.pushReplacementNamed(context, RouteNames.landing);
         }

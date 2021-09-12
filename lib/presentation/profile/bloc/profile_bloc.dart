@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
+import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:equatable/equatable.dart';
 
 part 'profile_event.dart';
@@ -22,9 +23,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<ProfileState> _profileFetchedToState(ProfileState state) async {
     try {
-
       final details = await userRepository.getUserDetails();
-      return ProfileFetchedSuccess(user: details);
+      return ProfileFetchedLoaded(user: details);
     } on Exception {
       return ProfileFetchedError();
     }

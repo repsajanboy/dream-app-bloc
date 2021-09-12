@@ -73,7 +73,7 @@ class UpsertDreamPage extends StatelessWidget {
           if (formStatus is FormSubmitting) {
             context.loaderOverlay.show();
           } else if (formStatus is SubmissionSuccess) {
-            Navigator.pushReplacementNamed(context, RouteNames.menu);
+            Navigator.pushReplacementNamed(context, RouteNames.menu, arguments: 0);
           } else if (formStatus is SubmissionFailed) {
             Fluttertoast.showToast(
                 msg: formStatus.error!.errorMessage(),

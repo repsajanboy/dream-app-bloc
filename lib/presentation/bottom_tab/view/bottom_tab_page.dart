@@ -5,11 +5,14 @@ import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
-import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
+import 'package:dream_app_bloc/utils/navigator_arguments/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavBarPage extends StatefulWidget {
+  final int currIndex;
+
+  const BottomNavBarPage({Key? key, required this.currIndex}) : super(key: key);
   @override
   _BottomNavBarPageState createState() => _BottomNavBarPageState();
 }
@@ -22,7 +25,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => BottomtabBloc()..add(InitialBottomTab()),
+            create: (context) => BottomtabBloc()..add(InitialBottomTab(widget.currIndex)),
           ),
           BlocProvider(
             create: (context) => DreamBloc(
@@ -51,6 +54,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
   Widget _buildTab(BuildContext context, CreateBottomTab state) {
     final items = state.items.map((type) => _getItem(type));
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.background,
       body: IndexedStack(
         index: state.currentIndex,

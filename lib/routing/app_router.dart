@@ -1,15 +1,17 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
+import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/landing/landing.dart';
 import 'package:dream_app_bloc/presentation/login/login.dart';
-import 'package:dream_app_bloc/presentation/profile/profile.dart';
+import 'package:dream_app_bloc/presentation/profile_setting/profile_setting.dart';
 import 'package:dream_app_bloc/presentation/register/register.dart';
 import 'package:dream_app_bloc/presentation/splash/splash.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
-import 'package:dream_app_bloc/utils/upsert_screen_arguments.dart';
+import 'package:dream_app_bloc/utils/navigator_arguments/profile_setting_arguments.dart';
+import 'package:dream_app_bloc/utils/navigator_arguments/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +27,8 @@ class AppRouter {
       case RouteNames.register:
         return MaterialPageRoute(builder: (_) => RegisterPage());
       case RouteNames.menu:
-        return MaterialPageRoute(builder: (_) => BottomNavBarPage());
+        final currIndex = routeSettings.arguments as int;
+        return MaterialPageRoute(builder: (_) => BottomNavBarPage(currIndex: currIndex,));
       case RouteNames.upsertDream:
         UpsertScreenArgument args =
             routeSettings.arguments as UpsertScreenArgument;
@@ -48,6 +51,7 @@ class AppRouter {
           ),
         );
       case RouteNames.setting:
+      ProfileSettingArguments args = routeSettings.arguments as ProfileSettingArguments;
         return PageRouteBuilder(
           settings:
               routeSettings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
@@ -56,7 +60,9 @@ class AppRouter {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
           ) =>
-              const ProfileSettingPage(),
+              ProfileSettingPage(
+            user: args.user!,
+          ),
           transitionsBuilder: (BuildContext context,
               Animation<double> animation,
               Animation<double> secondaryAnimation,
@@ -68,14 +74,16 @@ class AppRouter {
                     begin: const Offset(0.0, 0.0),
                     end: const Offset(-1.0, 0.0),
                   ).animate(animation),
-                  child: BottomNavBarPage(),
+                  child: const BottomNavBarPage(currIndex: 1,),
                 ),
                 SlideTransition(
                   position: Tween<Offset>(
                     begin: const Offset(1.0, 0.0),
                     end: Offset.zero,
                   ).animate(animation),
-                  child: const ProfileSettingPage(),
+                  child: ProfileSettingPage(
+                    user: args.user!,
+                  ),
                 )
               ],
             );
