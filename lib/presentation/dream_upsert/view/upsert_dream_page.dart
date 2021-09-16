@@ -4,6 +4,7 @@ import 'package:dream_app_bloc/presentation/dream_upsert/view/widgets/content_wi
 import 'package:dream_app_bloc/presentation/dream_upsert/view/widgets/rating_widget.dart';
 import 'package:dream_app_bloc/presentation/dream_upsert/view/widgets/title_save_widget.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,10 @@ class UpsertDreamPage extends StatelessWidget {
       context.read<UpsertDreamBloc>().add(UpsertToEdit(postDream: dream!));
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.indigo.shade900,
+        brightness: Brightness.dark,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_rounded,
@@ -73,37 +77,49 @@ class UpsertDreamPage extends StatelessWidget {
           if (formStatus is FormSubmitting) {
             context.loaderOverlay.show();
           } else if (formStatus is SubmissionSuccess) {
-            Navigator.pushReplacementNamed(context, RouteNames.menu, arguments: 0);
+            Navigator.pushReplacementNamed(context, RouteNames.menu,
+                arguments: 0);
           } else if (formStatus is SubmissionFailed) {
             Fluttertoast.showToast(
                 msg: formStatus.error!.errorMessage(),
                 gravity: ToastGravity.TOP,
                 toastLength: Toast.LENGTH_LONG,
                 backgroundColor: Colors.red,
-                textColor: Colors.white
-              );
+                textColor: Colors.white);
           }
         },
         child: LoaderOverlay(
           overlayOpacity: 0.8,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (value) {
-                context
-                    .read<UpsertDreamBloc>()
-                    .add(UpsertPageViewIndexChanged(pageViewIndex: value));
-              },
-              children: [
-                ContentFormWidget(
-                  isEditing: isEditing,
-                  content: isEditing ? dream!.content : '',
-                ),
-                CategoriesWidget(isEditing: isEditing),
-                RatingWidget(isEditing: isEditing),
-                TitleSaveWidget(isEditing: isEditing),
-              ],
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.indigoAccent,
+                  Colors.indigo.shade900,
+                ],
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (value) {
+                  context
+                      .read<UpsertDreamBloc>()
+                      .add(UpsertPageViewIndexChanged(pageViewIndex: value));
+                },
+                children: [
+                  ContentFormWidget(
+                    isEditing: isEditing,
+                    content: isEditing ? dream!.content : '',
+                  ),
+                  CategoriesWidget(isEditing: isEditing),
+                  RatingWidget(isEditing: isEditing),
+                  TitleSaveWidget(isEditing: isEditing),
+                ],
+              ),
             ),
           ),
         ),

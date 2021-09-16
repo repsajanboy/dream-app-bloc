@@ -39,12 +39,6 @@ class UpsertPageViewIndexChanged extends UpsertDreamEvent {
   UpsertPageViewIndexChanged({this.pageViewIndex});
 }
 
-class UpsertCategoriesIndexChanged extends UpsertDreamEvent {
-  final int? categoriesIndex;
-
-  UpsertCategoriesIndexChanged({this.categoriesIndex});
-}
-
 class UpsertSaved extends UpsertDreamEvent {}
 
 class UpsertEditSaved extends UpsertDreamEvent {}

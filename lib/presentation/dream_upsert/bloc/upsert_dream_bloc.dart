@@ -33,11 +33,12 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
     } else if (event is UpsertSaved) {
       yield state.copyWith(formStatus: FormSubmitting());
       final postDream = PostDream(
-          title: state.title,
-          content: state.content,
-          category: state.category,
-          rate: state.rate,
-          inputDate: state.inputDate);
+        title: state.title,
+        content: state.content,
+        category: state.category,
+        rate: state.rate,
+        inputDate: state.inputDate,
+      );
       try {
         await dreamRepository.postDream(postDream);
 
@@ -64,8 +65,6 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
       }
     } else if (event is UpsertPageViewIndexChanged) {
       yield state.copyWith(pageViewIndex: event.pageViewIndex);
-    } else if (event is UpsertCategoriesIndexChanged) {
-      yield state.copyWith(categoriesIndex: event.categoriesIndex);
     } else if (event is UpsertToEdit) {
       final editState = UpsertDreamState(
         id: event.postDream.id,

@@ -9,7 +9,6 @@ class UpsertDreamState extends Equatable {
   final int rate;
   final FormSubmissionStatus formStatus;
   final int pageViewIndex;
-  final int? categoriesIndex;
 
   UpsertDreamState({
     this.id = '',
@@ -17,10 +16,9 @@ class UpsertDreamState extends Equatable {
     this.content = '',
     this.title = '',
     this.category = '',
-    this.rate = 1,
+    this.rate = 3,
     this.formStatus = const InitialFormStatus(),
     this.pageViewIndex = 0,
-    this.categoriesIndex,
   }) : inputDate = inputDate ?? DateTime.now();
 
   UpsertDreamState copyWith({
@@ -32,7 +30,6 @@ class UpsertDreamState extends Equatable {
     int? rate,
     FormSubmissionStatus? formStatus,
     int? pageViewIndex,
-    int? categoriesIndex,
   }) {
     return UpsertDreamState(
         id: id ?? this.id,
@@ -43,7 +40,7 @@ class UpsertDreamState extends Equatable {
         rate: rate ?? this.rate,
         formStatus: formStatus ?? this.formStatus,
         pageViewIndex: pageViewIndex ?? this.pageViewIndex,
-        categoriesIndex: categoriesIndex ?? this.categoriesIndex);
+        );
   }
 
   @override

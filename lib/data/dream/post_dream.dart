@@ -23,6 +23,6 @@ class PostDream {
         "category": category,
         "rate": rate,
         "inputDate": inputDate!.toIso8601String(),
-        "updateDate": updateDate!.toIso8601String(),
+        "updateDate": updateDate == null ? null : updateDate!.toIso8601String(),
       };
 }

@@ -1,4 +1,6 @@
-import 'package:dream_app_bloc/repositories/dream_repository.dart';
+import 'dart:ui';
+
+import 'package:dream_app_bloc/data/dream/dream_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,16 +10,6 @@ class CategoriesWidget extends StatelessWidget {
   final bool isEditing;
   const CategoriesWidget({Key? key, required this.isEditing}) : super(key: key);
 
-  static const _categoriesString = [
-    "Fiction",
-    "Fantasy",
-    "Horror",
-    "Love",
-    "Sex",
-    "Drama",
-    "Suspense",
-    "Action"
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +18,14 @@ class CategoriesWidget extends StatelessWidget {
         const SizedBox(
           height: 20.0,
         ),
-        const Text('Categories:'),
+        const Text(
+          'Themes:',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 22.0,
+          ),
+        ),
         const SizedBox(
           height: 8.0,
         ),
@@ -34,43 +33,59 @@ class CategoriesWidget extends StatelessWidget {
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 2.0,
-              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
             ),
             shrinkWrap: true,
-            itemCount: _categoriesString.length,
+            itemCount: dreamThemes.length,
             itemBuilder: (context, index) {
               return BlocBuilder<UpsertDreamBloc, UpsertDreamState>(
                 builder: (context, state) {
-                  final selectedIndex = isEditing
-                      ? _categoriesString.indexOf(state.category)
-                      : state.categoriesIndex;
+                  final selectedIndex =
+                      dreamThemes.indexWhere((e) => e.theme == state.category);
                   return InkWell(
                     onTap: () {
-                      context.read<UpsertDreamBloc>().add(
-                          UpsertCategoriesIndexChanged(categoriesIndex: index));
                       context.read<UpsertDreamBloc>().add(UpsertCategoryChanged(
-                          category: _categoriesString[index]));
+                          category: dreamThemes[index].theme));
                     },
-                    child: Card(
-                      shape: selectedIndex == index
-                          ? RoundedRectangleBorder(
-                              side: const BorderSide(
-                                  color: Colors.blue, width: 2.0),
-                              borderRadius: BorderRadius.circular(4.0))
-                          : RoundedRectangleBorder(
-                              side: const BorderSide(
-                                  color: Colors.white, width: 2.0),
-                              borderRadius: BorderRadius.circular(4.0)),
-                      elevation: 5.0,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.ac_unit),
-                          const Text('Cusom icon '),
-                          const SizedBox(height: 8.0),
-                          Text(_categoriesString[index])
-                        ],
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 16.0,
+                          sigmaY: 16.0,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(16.0),
+                              border: Border.all(
+                                width: selectedIndex == index ? 2.0 : 1.5,
+                                color: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.white.withOpacity(0.2),
+                              )),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                  dreamThemes[index].iconPath,
+                                ),
+                                height: 60,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                dreamThemes[index].theme,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                    fontSize: 18.0),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   );
