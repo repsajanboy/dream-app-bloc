@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
+import 'package:dream_app_bloc/data/dream/dream_rates.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -87,34 +88,47 @@ class DreamList extends StatelessWidget {
               color: Colors.white,
               elevation: 15.0,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      dream.title,
-                      style: const TextStyle(
-                          color: AppColors.dreams,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0),
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text(
-                      dream.content,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    const SizedBox(height: 4.0),
-                    Row(
-                      children: [
-                        Text(dream.category),
-                        const SizedBox(width: 10.0),
-                        Text(dream.rate.toString()),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          ratings[dream.rate].emoji,
+                          style: TextStyle(
+                            fontSize: 48.0,
+                            color: Colors.grey.withOpacity(0.3)
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            dream.title,
+                            style: const TextStyle(
+                                color: AppColors.dreams,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.0),
+                          ),
+                          const SizedBox(height: 4.0),
+                          Text(
+                            dream.content,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          const SizedBox(height: 4.0),
+                          Row(
+                            children: [
+                              Text(dream.category),
+                              const SizedBox(width: 10.0),
+                              Text(ratings[dream.rate].rateStr),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
             ),
           ),
         ],

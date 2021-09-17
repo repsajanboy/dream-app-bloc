@@ -47,25 +47,6 @@ class ProfileSettingPage extends StatelessWidget {
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
-            bottomNavigationBar:
-                BlocBuilder<ProfileSettingBloc, ProfileSettingState>(
-              builder: (context, state) {
-                return TextButton(
-                  onPressed: () {
-                    context
-                        .read<ProfileSettingBloc>()
-                        .add(ProfileSaveChanges());
-                  },
-                  style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      backgroundColor: Colors.indigoAccent),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text('SAVE CHANGES'),
-                  ),
-                );
-              },
-            ),
             body: MultiBlocListener(
               listeners: [
                 BlocListener<AuthenticationBloc, AuthenticationState>(
@@ -82,7 +63,8 @@ class ProfileSettingPage extends StatelessWidget {
                   listener: (context, state) {
                     final formStatus = state.formStatus;
                     if (formStatus is SubmissionSuccess) {
-                      Navigator.pushNamed(context, RouteNames.menu, arguments: 1);
+                      Navigator.pushNamed(context, RouteNames.menu,
+                          arguments: 1);
                     } else if (formStatus is SubmissionFailed) {
                       Fluttertoast.showToast(
                           msg: formStatus.error!.errorMessage(),
@@ -110,6 +92,7 @@ class ProfileSettingPage extends StatelessWidget {
                           ],
                         ),
                       ),
+                      _saveChangesButton(),
                       _backButton(context),
                     ],
                   ),
@@ -144,6 +127,33 @@ class ProfileSettingPage extends StatelessWidget {
           ),
           child: const Icon(Icons.arrow_back),
         ),
+      ),
+    );
+  }
+
+  Widget _saveChangesButton() {
+    return Positioned(
+      bottom: 0.0,
+      child: BlocBuilder<ProfileSettingBloc, ProfileSettingState>(
+        builder: (context, state) {
+          return Visibility(
+            visible: state.someDataChanged,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: TextButton(
+                onPressed: () {
+                  context.read<ProfileSettingBloc>().add(ProfileSaveChanges());
+                },
+                style: TextButton.styleFrom(
+                    primary: Colors.white, backgroundColor: Colors.indigoAccent),
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text('SAVE CHANGES'),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

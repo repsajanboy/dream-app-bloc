@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
+import 'package:dream_app_bloc/data/dream/dream_rates.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/navigator_arguments/upsert_screen_arguments.dart';
@@ -85,7 +86,7 @@ class DreamPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          dream.rate.toString(),
+                          ratings[dream.rate].rateStr,
                           style: TextStyle(
                             color: Colors.indigo.shade300,
                             fontWeight: FontWeight.w100,

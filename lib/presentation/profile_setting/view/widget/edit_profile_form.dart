@@ -56,6 +56,9 @@ class EditProfileForm extends StatelessWidget {
             onChanged: (value) {
               context
                   .read<ProfileSettingBloc>()
+                  .add(const ProfileEditDataChanged(someDataChanged: true));
+              context
+                  .read<ProfileSettingBloc>()
                   .add(ProfileFirstNameChanged(firstName: value));
             },
           );
@@ -90,6 +93,9 @@ class EditProfileForm extends StatelessWidget {
             onChanged: (value) {
               context
                   .read<ProfileSettingBloc>()
+                  .add(const ProfileEditDataChanged(someDataChanged: true));
+              context
+                  .read<ProfileSettingBloc>()
                   .add(ProfileLastNameChanged(lastName: value));
             },
           );
@@ -121,6 +127,9 @@ class EditProfileForm extends StatelessWidget {
             validator: (value) => null,
             //EmailValidator.validate(value!) ? null : 'Invalid Email',
             onChanged: (value) {
+              context
+                  .read<ProfileSettingBloc>()
+                  .add(const ProfileEditDataChanged(someDataChanged: true));
               context
                   .read<ProfileSettingBloc>()
                   .add(ProfileEmailChanged(email: value));

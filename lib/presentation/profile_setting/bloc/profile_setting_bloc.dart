@@ -44,6 +44,7 @@ class ProfileSettingBloc
         yield state.copyWith(formStatus: SubmissionFailed(error: e.toString()));
       }
     } else if (event is ProfileEditDataChanged) {
+      print(event.someDataChanged);
       yield state.copyWith(someDataChanged: event.someDataChanged);
     }
   }

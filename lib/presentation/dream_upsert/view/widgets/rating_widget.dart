@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/data/dream/dream_rates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,8 +8,6 @@ class RatingWidget extends StatelessWidget {
   final bool isEditing;
   const RatingWidget({Key? key, required this.isEditing}) : super(key: key);
 
-  static const _emojis = ['', '😭', '😔', '😀', '😊', '🤩'];
-  static const _rateString = ['','Terrible','Bad','Normal','Good','Awesome'];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,13 +29,13 @@ class RatingWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    _emojis[state.rate],
+                    ratings[state.rate].emoji,
                     style: const TextStyle(
                       fontSize: 64.0
                     ),
                   ),
                   Text(
-                    _rateString[state.rate],
+                    ratings[state.rate].rateStr,
                     style: const TextStyle(
                       fontSize: 32.0,
                       color: Colors.white,

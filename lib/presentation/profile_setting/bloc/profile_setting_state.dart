@@ -37,7 +37,7 @@ class ProfileSettingState extends Equatable {
   }
 
   @override
-  List<Object> get props => [firstName, lastName, email, formStatus];
+  List<Object> get props => [firstName, lastName, email, formStatus, someDataChanged];
 }
 
 class ProfileSettingInitial extends ProfileSettingState {}
