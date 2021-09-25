@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
+import 'package:dream_app_bloc/presentation/dream_favorites/favorite_dreams.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/presentation/profile/view/widgets/dream_quote.dart';
 import 'package:dream_app_bloc/presentation/profile/view/widgets/rate_contact.dart';
@@ -118,15 +119,14 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _dreamsCount() {
-    return BlocConsumer<DreamBloc, DreamState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Container(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 50.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
+    return Container(
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 50.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          BlocBuilder<DreamBloc, DreamState>(
+            builder: (context, state) {
+              return Container(
                 width: 80.0,
                 height: 80.0,
                 decoration: BoxDecoration(
@@ -143,16 +143,22 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(state.dreams.length.toString(),
-                        style: context.typo.dreamCountStyle()),
+                    Text(
+                      state.dreams.length.toString(),
+                      style: context.typo.dreamCountStyle(),
+                    ),
                     Text(
                       'dreams',
                       style: context.typo.dreamCountLableStyle(),
                     )
                   ],
                 ),
-              ),
-              Container(
+              );
+            },
+          ),
+          BlocBuilder<FavoriteDreamBloc, FavoriteDreamState>(
+            builder: (context, state) {
+              return Container(
                 width: 80.0,
                 height: 80.0,
                 decoration: BoxDecoration(
@@ -169,15 +175,18 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('2', style: context.typo.dreamCountStyle()),
+                    Text(
+                      state.dreams.length.toString(),
+                      style: context.typo.dreamCountStyle(),
+                    ),
                     Text('faves', style: context.typo.dreamCountLableStyle())
                   ],
                 ),
-              ),
-            ],
+              );
+            },
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

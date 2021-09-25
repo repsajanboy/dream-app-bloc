@@ -1,5 +1,7 @@
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
+import 'package:dream_app_bloc/presentation/dream_favorites/favorite_dreams.dart';
+import 'package:dream_app_bloc/presentation/horoscope/horoscope.dart';
 import 'package:dream_app_bloc/presentation/profile/profile.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
@@ -25,7 +27,8 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => BottomtabBloc()..add(InitialBottomTab(widget.currIndex)),
+            create: (context) =>
+                BottomtabBloc()..add(InitialBottomTab(widget.currIndex)),
           ),
           BlocProvider(
             create: (context) => DreamBloc(
@@ -36,6 +39,11 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
             create: (context) => ProfileBloc(
               userRepository: context.read<UserRepository>(),
             )..add(const ProfileFetched()),
+          ),
+          BlocProvider(
+            create: (context) => FavoriteDreamBloc(
+              dreamRepository: context.read<DreamRepository>(),
+            )..add(FavoriteDreamsFetched()),
           ),
         ],
         child: BlocBuilder<BottomtabBloc, BottomtabState>(
@@ -127,38 +135,78 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
     switch (type) {
       case BottomTabItemType.home:
         return BottomTabItem(
-            page: DreamsPage(),
-            icon: const Icon(
-              Icons.view_day_outlined,
-              color: Colors.black38,
-              size: 32,
-            ),
-            activeIcon: const Icon(
-              Icons.view_day_outlined,
-              color: AppColors.dreams,
-              size: 32.0,
-            ),
-            title: '');
+          page: DreamsPage(),
+          icon: const Icon(
+            Icons.view_day_outlined,
+            color: Colors.black38,
+            size: 32,
+          ),
+          activeIcon: const Icon(
+            Icons.view_day_outlined,
+            color: AppColors.dreams,
+            size: 32.0,
+          ),
+          title: '',
+        );
+      case BottomTabItemType.horoscope:
+        return BottomTabItem(
+          page: const HoroscopePage(),
+          icon: const Icon(
+            Icons.auto_awesome,
+            color: Colors.black38,
+            size: 32,
+          ),
+          activeIcon: const Icon(
+            Icons.auto_awesome,
+            color: AppColors.dreams,
+            size: 32.0,
+          ),
+          title: '',
+        );
+      case BottomTabItemType.space:
+        return BottomTabItem(
+          page: const SizedBox(),
+          icon: const SizedBox(),
+          activeIcon: const SizedBox(),
+          title: '',
+        );
+      case BottomTabItemType.favorites:
+        return BottomTabItem(
+          page: const FavoriteDreamsPage(),
+          icon: const Icon(
+            Icons.favorite_border_rounded,
+            color: Colors.black38,
+            size: 32,
+          ),
+          activeIcon: const Icon(
+            Icons.favorite,
+            color: AppColors.dreams,
+            size: 32.0,
+          ),
+          title: '',
+        );
       case BottomTabItemType.profile:
         return BottomTabItem(
-            page: ProfilePage(),
-            icon: const Icon(
-              Icons.person_outlined,
-              color: Colors.black38,
-              size: 32,
-            ),
-            activeIcon: const Icon(
-              Icons.person_outlined,
-              color: AppColors.dreams,
-              size: 32,
-            ),
-            title: '');
+          page: ProfilePage(),
+          icon: const Icon(
+            Icons.person_outlined,
+            color: Colors.black38,
+            size: 32,
+          ),
+          activeIcon: const Icon(
+            Icons.person_outlined,
+            color: AppColors.dreams,
+            size: 32,
+          ),
+          title: '',
+        );
       default:
         return BottomTabItem(
-            page: const SizedBox(),
-            icon: const SizedBox(),
-            activeIcon: const SizedBox(),
-            title: '');
+          page: const SizedBox(),
+          icon: const SizedBox(),
+          activeIcon: const SizedBox(),
+          title: '',
+        );
     }
   }
 }

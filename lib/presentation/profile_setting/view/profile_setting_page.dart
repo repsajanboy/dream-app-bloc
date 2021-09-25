@@ -64,7 +64,7 @@ class ProfileSettingPage extends StatelessWidget {
                     final formStatus = state.formStatus;
                     if (formStatus is SubmissionSuccess) {
                       Navigator.pushNamed(context, RouteNames.menu,
-                          arguments: 1);
+                          arguments: 4);
                     } else if (formStatus is SubmissionFailed) {
                       Fluttertoast.showToast(
                           msg: formStatus.error!.errorMessage(),

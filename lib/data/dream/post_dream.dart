@@ -5,6 +5,7 @@ class PostDream {
     this.content,
     this.category,
     this.rate,
+    this.favorite,
     this.inputDate,
     this.updateDate,
   });
@@ -13,6 +14,7 @@ class PostDream {
   String? content;
   String? category;
   int? rate;
+  bool? favorite;
   DateTime? inputDate;
   DateTime? updateDate;
 
@@ -22,6 +24,7 @@ class PostDream {
         "content": content,
         "category": category,
         "rate": rate,
+        "favorite": favorite,
         "inputDate": inputDate!.toIso8601String(),
         "updateDate": updateDate == null ? null : updateDate!.toIso8601String(),
       };

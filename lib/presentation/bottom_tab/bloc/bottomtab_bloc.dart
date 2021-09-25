@@ -19,6 +19,7 @@ class BottomtabBloc extends Bloc<BottomtabEvent, BottomtabState> {
       yield CreateBottomTab(currentIndex: event.index, items: _getItems());
     } else if(event is BottomTabChanged) {
       currentIndex = event.index;
+      if(currentIndex == 2) return;
       yield CreateBottomTab(currentIndex: currentIndex, items: _getItems());
     }
   }
@@ -26,6 +27,9 @@ class BottomtabBloc extends Bloc<BottomtabEvent, BottomtabState> {
   List<BottomTabItemType> _getItems() {
     return [
       BottomTabItemType.home,
+      BottomTabItemType.horoscope,
+      BottomTabItemType.space,
+      BottomTabItemType.favorites,
       BottomTabItemType.profile,
     ];
   }

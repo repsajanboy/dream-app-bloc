@@ -88,47 +88,66 @@ class DreamList extends StatelessWidget {
               color: Colors.white,
               elevation: 15.0,
               child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Text(
-                          ratings[dream.rate].emoji,
-                          style: TextStyle(
+                padding: const EdgeInsets.all(20.0),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        ratings[dream.rate].emoji,
+                        style: TextStyle(
                             fontSize: 48.0,
-                            color: Colors.grey.withOpacity(0.3)
-                          ),
+                            color: Colors.grey.withOpacity(0.4)),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          dream.title,
+                          style: const TextStyle(
+                              color: AppColors.dreams,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0),
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            dream.title,
-                            style: const TextStyle(
-                                color: AppColors.dreams,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0),
-                          ),
-                          const SizedBox(height: 4.0),
-                          Text(
-                            dream.content,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          const SizedBox(height: 4.0),
-                          Row(
-                            children: [
-                              Text(dream.category),
-                              const SizedBox(width: 10.0),
-                              Text(ratings[dream.rate].rateStr),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
+                        const SizedBox(height: 4.0),
+                        Text(
+                          dream.content,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 4.0),
+                        Row(
+                          children: [
+                            Text(
+                              dream.category,
+                              style: const TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black54,
+                              ),
+                            ),
+                            const SizedBox(width: 10.0),
+                            Text(
+                              ratings[dream.rate].rateStr,
+                              style: const TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black45,
+                              ),
+                            ),
+                            const SizedBox(width: 10.0),
+                            Icon(
+                              dream.favorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_rounded,
+                              color: dream.favorite ? Colors.red.withOpacity(0.8) : Colors.black45,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],

@@ -31,4 +31,20 @@ class DreamRepository {
     final result = await apiClient.updateDream(token, updateDream);
     return Dream.fromJson(result as Map<String, dynamic>);
   }
+
+  Future<List<Dream>> fetchFavoriteDreams() async {
+    String token = (await _sharedPref.readStr("token"))!;
+    token = token.replaceAll('"', '').trim();
+
+    final result = await apiClient.fetchFavoriteDreams(token) as List;
+    return result.cast<Map<String, dynamic>>().map((e) => Dream.fromJson(e)).toList();
+  }
+
+  Future<Dream> updateFavoriteDream(String dreamId, Map<String, dynamic> updateFavorite) async {
+    String token = (await _sharedPref.readStr("token"))!;
+    token = token.replaceAll('"', '').trim();
+
+    final result = await apiClient.updateFavoriteDream(token, dreamId, updateFavorite);
+    return Dream.fromJson(result as Map<String, dynamic>);
+  }
 }

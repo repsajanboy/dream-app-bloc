@@ -7,6 +7,7 @@ class UpsertDreamState extends Equatable {
   final String title;
   final String category;
   final int rate;
+  final bool favorite;
   final FormSubmissionStatus formStatus;
   final int pageViewIndex;
 
@@ -17,6 +18,7 @@ class UpsertDreamState extends Equatable {
     this.title = '',
     this.category = '',
     this.rate = 3,
+    this.favorite = false,
     this.formStatus = const InitialFormStatus(),
     this.pageViewIndex = 0,
   }) : inputDate = inputDate ?? DateTime.now();
@@ -28,6 +30,7 @@ class UpsertDreamState extends Equatable {
     String? title,
     String? category,
     int? rate,
+    bool? favorite,
     FormSubmissionStatus? formStatus,
     int? pageViewIndex,
   }) {
@@ -38,13 +41,14 @@ class UpsertDreamState extends Equatable {
         title: title ?? this.title,
         category: category ?? this.category,
         rate: rate ?? this.rate,
+        favorite: favorite ?? this.favorite,
         formStatus: formStatus ?? this.formStatus,
         pageViewIndex: pageViewIndex ?? this.pageViewIndex,
         );
   }
 
   @override
-  List<Object> get props => [id, inputDate, content, title, category, rate, formStatus, pageViewIndex];
+  List<Object> get props => [id, inputDate, content, title, category, rate, favorite, formStatus, pageViewIndex];
 
   @override
   String toString() {

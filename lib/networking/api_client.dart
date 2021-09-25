@@ -146,4 +146,46 @@ class ApiClient {
       throw Exception(err['msg']);
     }
   }
+
+  Future<dynamic> fetchFavoriteDreams(String token) async {
+    try {
+      const dreamsUrl = "$baseUrl/api/dream/favorites";
+      final dreamsResponse = await _dio.get(
+        dreamsUrl,
+        options: Options(headers: {
+          "auth-token": token,
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        }),
+      );
+      final toEncode = json.encode(dreamsResponse.data);
+      final response = json.decode(toEncode.replaceAll('_id', 'id'));
+      return response;
+    } on DioError catch (e) {
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
+    }
+  }
+
+  Future<dynamic> updateFavoriteDream(
+      String token, String dreamId, Map<String, dynamic> updateFavorite) async {
+    try {
+      final updateDreamUrl = "$baseUrl/api/dream/$dreamId";
+      final postDreamResponse = await _dio.put(
+        updateDreamUrl,
+        options: Options(headers: {
+          "auth-token": token,
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        }),
+        data: updateFavorite,
+      );
+      final toEncode = json.encode(postDreamResponse.data);
+      final response = json.decode(toEncode.replaceAll('_id', 'id'));
+      return response;
+    } on DioError catch (e) {
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
+    }
+  }
 }

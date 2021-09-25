@@ -1,4 +1,7 @@
 enum BottomTabItemType {
   home,
-  profile
+  horoscope,
+  favorites,
+  profile,
+  space,
 }

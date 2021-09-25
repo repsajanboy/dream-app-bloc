@@ -10,6 +10,7 @@ class Dream {
     required this.content,
     required this.category,
     required this.rate,
+    required this.favorite,
     required this.user,
     required this.inputDate,
   });
@@ -19,6 +20,7 @@ class Dream {
   String content;
   String category;
   int rate;
+  bool favorite;
   String user;
   DateTime inputDate;
 

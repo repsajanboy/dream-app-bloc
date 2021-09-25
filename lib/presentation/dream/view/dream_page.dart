@@ -1,9 +1,12 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/data/dream/dream_rates.dart';
+import 'package:dream_app_bloc/presentation/dream_favorites/favorite_dreams.dart';
+import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/navigator_arguments/upsert_screen_arguments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class DreamPage extends StatelessWidget {
@@ -50,9 +53,55 @@ class DreamPage extends StatelessWidget {
                           Navigator.pop(context);
                         },
                       ),
-                      const Icon(
-                        Icons.more_vert_rounded,
-                        color: Colors.white60,
+                      PopupMenuButton(
+                        icon: const Icon(
+                          Icons.more_vert_rounded,
+                          color: Colors.white60,
+                        ),
+                        color: Colors.indigoAccent,
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: BlocProvider(
+                              create: (context) => FavoriteDreamBloc(
+                                dreamRepository:
+                                    context.read<DreamRepository>(),
+                              ),
+                              child: BlocBuilder<FavoriteDreamBloc,
+                                  FavoriteDreamState>(
+                                builder: (context, state) {
+                                  return SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.white,
+                                        onPrimary: Colors.indigo.shade900,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        context.read<FavoriteDreamBloc>().add(
+                                              FavoriteDreamChanged(
+                                                favorite: !dream.favorite,
+                                                id: dream.id,
+                                              ),
+                                            );
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          RouteNames.menu,
+                                          arguments: dream.favorite ? 0 : 3,
+                                        );
+                                      },
+                                      icon: const Icon(Icons.favorite_border,
+                                          size: 18),
+                                      label: dream.favorite
+                                          ? const Text("Remove to favorite")
+                                          : const Text("Add to favorite"),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

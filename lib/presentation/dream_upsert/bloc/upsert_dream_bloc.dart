@@ -37,6 +37,7 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
         content: state.content,
         category: state.category,
         rate: state.rate,
+        favorite: state.favorite,
         inputDate: state.inputDate,
       );
       try {
@@ -54,6 +55,7 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
           content: state.content,
           category: state.category,
           rate: state.rate,
+          favorite: state.favorite,
           inputDate: state.inputDate,
           updateDate: DateTime.now());
       try {
@@ -72,7 +74,8 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
         content: event.postDream.content,
         inputDate: event.postDream.inputDate,
         category: event.postDream.category,
-        //rate: event.postDream.rate,
+        rate: event.postDream.rate,
+        favorite: event.postDream.favorite,
       );
       yield editState;
     }
