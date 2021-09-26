@@ -24,9 +24,9 @@ class FavoriteDreamsPage extends StatelessWidget {
               child: const Text(
                 'Saved Dreams',
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 28.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black38,
+                  color: AppColors.dreams,
                 ),
               ),
             ),

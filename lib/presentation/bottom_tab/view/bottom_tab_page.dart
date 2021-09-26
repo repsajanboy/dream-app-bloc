@@ -150,7 +150,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
         );
       case BottomTabItemType.horoscope:
         return BottomTabItem(
-          page: const HoroscopePage(),
+          page: HoroscopePage(),
           icon: const Icon(
             Icons.auto_awesome,
             color: Colors.black38,

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dream_app_bloc/data/dream/post_dream.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 const baseUrl = "http://10.0.2.2:3000";
 
 class ApiClient {
@@ -186,6 +186,25 @@ class ApiClient {
     } on DioError catch (e) {
       final err = json.decode(e.response.toString());
       throw Exception(err['msg']);
+    }
+  }
+
+  Future<dynamic> getHoroscope(String sign) async {
+    try {
+      final horoscopeUrl =
+          "https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=$sign&day=today";
+      final response = await _dio.post(
+        horoscopeUrl,
+        options: Options(
+          headers: {
+            'x-rapidapi-host': dotenv.env['HOROSCOPE_API_HOST'],
+            'x-rapidapi-key': dotenv.env['HOROSCOPE_API_KEY']
+          }
+        )
+      );
+      return json.decode(response.toString());
+    } on DioError catch (e) {
+      throw Exception(e.toString());
     }
   }
 }
