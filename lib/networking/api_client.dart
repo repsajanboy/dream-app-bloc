@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dream_app_bloc/data/dream/post_dream.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 const baseUrl = "http://10.0.2.2:3000";
 
 class ApiClient {
@@ -193,18 +194,34 @@ class ApiClient {
     try {
       final horoscopeUrl =
           "https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=$sign&day=today";
-      final response = await _dio.post(
-        horoscopeUrl,
-        options: Options(
-          headers: {
+      final response = await _dio.post(horoscopeUrl,
+          options: Options(headers: {
             'x-rapidapi-host': dotenv.env['HOROSCOPE_API_HOST'],
             'x-rapidapi-key': dotenv.env['HOROSCOPE_API_KEY']
-          }
-        )
-      );
+          }));
       return json.decode(response.toString());
     } on DioError catch (e) {
       throw Exception(e.toString());
+    }
+  }
+
+  Future<dynamic> deleteDream(String token, String dreamId) async {
+    try {
+      final deleteDreamUrl = "$baseUrl/api/dream/$dreamId";
+      final deleteResponse = await _dio.delete(
+        deleteDreamUrl,
+        options: Options(headers: {
+          "auth-token": token,
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        }),
+      );
+      final toEncode = json.encode(deleteResponse.data);
+      final response = json.decode(toEncode.replaceAll('_id', 'id'));
+      return response;
+    } on DioError catch (e) {
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
     }
   }
 }

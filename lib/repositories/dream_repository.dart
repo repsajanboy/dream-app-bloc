@@ -47,4 +47,12 @@ class DreamRepository {
     final result = await apiClient.updateFavoriteDream(token, dreamId, updateFavorite);
     return Dream.fromJson(result as Map<String, dynamic>);
   }
+
+  Future<dynamic> deleteDream(String dreamId) async {
+    String token = (await _sharedPref.readStr("token"))!;
+    token = token.replaceAll('"', '').trim();
+
+    final result = await apiClient.deleteDream(token, dreamId);
+    return result;
+  }
 }

@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import '../dream.dart';
+
 class DreamPage extends StatelessWidget {
   const DreamPage({Key? key, required this.dream}) : super(key: key);
   final Dream dream;
@@ -98,6 +100,39 @@ class DreamPage extends StatelessWidget {
                                     ),
                                   );
                                 },
+                              ),
+                            ),
+                          ),
+                          PopupMenuItem(
+                            child: BlocProvider(
+                              create: (context) => DreamBloc(
+                                dreamRepository:
+                                    context.read<DreamRepository>(),
+                              ),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: BlocBuilder<DreamBloc, DreamState>(
+                                  builder: (context, state) {
+                                    return ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.white,
+                                        onPrimary: Colors.indigo.shade900,
+                                      ),
+                                      onPressed: () async {
+                                        Navigator.pop(context);
+                                        context.read<DreamBloc>().add(
+                                            DreamDelete(dreamId: dream.id));
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          RouteNames.menu,
+                                          arguments: 0,
+                                        );
+                                      },
+                                      icon: const Icon(Icons.delete, size: 18),
+                                      label: const Text("Delete dream"),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),

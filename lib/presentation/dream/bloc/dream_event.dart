@@ -11,3 +11,12 @@ class DreamsFetched extends DreamEvent {
   @override
   List<Object> get props => [];
 }
+
+class DreamDelete extends DreamEvent {
+  final String dreamId;
+
+  const DreamDelete({required this.dreamId});
+
+   @override
+  List<Object> get props => [];
+}

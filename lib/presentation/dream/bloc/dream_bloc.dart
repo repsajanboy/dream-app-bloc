@@ -18,6 +18,18 @@ class DreamBloc extends Bloc<DreamEvent, DreamState> {
   ) async* {
     if (event is DreamsFetched) {
       yield await _mapDreamsFetchedToState(state);
+    } else if (event is DreamDelete) {
+      try {
+        await dreamRepository.deleteDream(event.dreamId);
+        Future.delayed(const Duration(milliseconds: 200));
+        final dreams = await dreamRepository.fetchDreams();
+        yield state.copyWith(
+          status: DreamStatus.success,
+          dreams: dreams,
+        );
+      } on Exception {
+        yield state.copyWith(status: DreamStatus.error);
+      }
     }
   }
 
