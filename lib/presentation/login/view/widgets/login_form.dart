@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/presentation/login/login.dart';
+import 'package:dream_app_bloc/presentation/reset_password/reset_password.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: 10.0),
             _passwordField(),
             const SizedBox(height: 10.0),
-            _forgotPassword(),
+            _forgotPassword(context),
           ],
         ),
       ),
@@ -99,13 +100,25 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget _forgotPassword() {
-    return const Align(
+  Widget _forgotPassword(BuildContext context) {
+    return Align(
       alignment: Alignment.centerRight,
-      child: Text(
-        'FORGOT?',
-        style: TextStyle(color: Colors.white60, fontSize: 16.0),
+      child: TextButton(
+        onPressed: () => showOptionsDialog(context),
+        child: const Text(
+          'FORGOT?',
+          style: TextStyle(color: Colors.white60, fontSize: 16.0),
+        ),
       ),
     );
   }
+}
+
+Future<void> showOptionsDialog(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext build) {
+      return ResetPasswordModal();
+    },
+  );
 }

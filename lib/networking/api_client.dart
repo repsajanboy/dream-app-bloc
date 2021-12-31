@@ -224,4 +224,28 @@ class ApiClient {
       throw Exception(err['msg']);
     }
   }
+
+  Future<dynamic> resetPassword(Map<String, String> email) async {
+    try {
+      const resetPasswordUrl = "$baseUrl/api/auth/reset-password";
+      final resetPasswordResponse =
+          await _dio.post(resetPasswordUrl, data: email);
+      return json.decode(resetPasswordResponse.toString());
+    } on DioError catch (e) {
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
+    }
+  }
+
+  Future<dynamic> updatePassword(Map<String, String> updatePasswordObj) async {
+    try {
+      const updatePasswordUrl = "$baseUrl/api/auth/update-password";
+      final updatePasswordResponse =
+          await _dio.put(updatePasswordUrl, data: updatePasswordObj);
+      return json.decode(updatePasswordResponse.toString());
+    } on DioError catch (e) {
+      final err = json.decode(e.response.toString());
+      throw Exception(err['msg']);
+    }
+  }
 }

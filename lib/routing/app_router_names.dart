@@ -7,4 +7,6 @@ class RouteNames {
   static const String dream = "/dream";
   static const String upsertDream = "/upsertDream";
   static const String setting = "/setting";
+  static const String verificationCode = "/verificationCode";
+  static const String resetPassword = "/resetPassword";
 }

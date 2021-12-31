@@ -7,7 +7,9 @@ import 'package:dream_app_bloc/presentation/landing/landing.dart';
 import 'package:dream_app_bloc/presentation/login/login.dart';
 import 'package:dream_app_bloc/presentation/profile_setting/profile_setting.dart';
 import 'package:dream_app_bloc/presentation/register/register.dart';
+import 'package:dream_app_bloc/presentation/reset_password/reset_password.dart';
 import 'package:dream_app_bloc/presentation/splash/splash.dart';
+import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/utils/navigator_arguments/profile_setting_arguments.dart';
@@ -28,7 +30,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => RegisterPage());
       case RouteNames.menu:
         final currIndex = routeSettings.arguments as int;
-        return MaterialPageRoute(builder: (_) => BottomNavBarPage(currIndex: currIndex,));
+        return MaterialPageRoute(
+            builder: (_) => BottomNavBarPage(
+                  currIndex: currIndex,
+                ));
       case RouteNames.upsertDream:
         UpsertScreenArgument args =
             routeSettings.arguments as UpsertScreenArgument;
@@ -51,7 +56,8 @@ class AppRouter {
           ),
         );
       case RouteNames.setting:
-      ProfileSettingArguments args = routeSettings.arguments as ProfileSettingArguments;
+        ProfileSettingArguments args =
+            routeSettings.arguments as ProfileSettingArguments;
         return PageRouteBuilder(
           settings:
               routeSettings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
@@ -74,7 +80,9 @@ class AppRouter {
                     begin: const Offset(0.0, 0.0),
                     end: const Offset(-1.0, 0.0),
                   ).animate(animation),
-                  child: const BottomNavBarPage(currIndex: 1,),
+                  child: const BottomNavBarPage(
+                    currIndex: 1,
+                  ),
                 ),
                 SlideTransition(
                   position: Tween<Offset>(
@@ -88,6 +96,19 @@ class AppRouter {
               ],
             );
           },
+        );
+      case RouteNames.verificationCode:
+        return MaterialPageRoute(
+          builder: (_) => ResetPasswordVerificationPage(),
+        );
+      case RouteNames.resetPassword:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => NewPasswordBloc(
+                authorizationRepository:
+                    context.read<AuthorizationRepository>()),
+            child: ResetPasswordPage(),
+          ),
         );
       default:
         return MaterialPageRoute(

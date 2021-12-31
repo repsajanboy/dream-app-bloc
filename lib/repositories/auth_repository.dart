@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dream_app_bloc/networking/api_client.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 
@@ -47,6 +45,25 @@ class AuthorizationRepository {
     if (result["success"] == true) {
       _sharedPref.clear();
     }
+    return result;
+  }
+
+  Future<dynamic> resetPassword(String email) async {
+    final resetPasswordObj = {"email": email};
+    final result = await apiClient.resetPassword(resetPasswordObj);
+    _sharedPref.save("emailPass", email);
+    _sharedPref.save("verifyCode", result["verificationCode"]);
+    return result;
+  }
+
+  Future<dynamic> updatePassword(String email, String password) async {
+    final updatePasswordObj = {
+      "email": email,
+      "password": password,
+    };
+
+    final result = await apiClient.updatePassword(updatePasswordObj);
+
     return result;
   }
 }

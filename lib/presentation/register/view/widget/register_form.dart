@@ -157,7 +157,7 @@ class RegisterForm extends StatelessWidget {
                 ),
               ),
             ),
-            obscureText: state.isObscureText,
+            obscureText: !state.isObscureText,
             validator: (value) =>
                 state.isValidPassword ? null : 'Password is too short',
             onChanged: (value) {
