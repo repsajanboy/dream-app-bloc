@@ -7,7 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 const baseUrl = "http://10.0.2.2:3000";
 
 class ApiClient {
-  Dio _dio = new Dio();
+  final _dio = Dio();
 
   Future<dynamic> login(Map<String, String> loginCredentials) async {
     try {

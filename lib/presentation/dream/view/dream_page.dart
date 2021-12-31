@@ -24,7 +24,7 @@ class DreamPage extends StatelessWidget {
           Navigator.pushNamed(
             context,
             RouteNames.upsertDream,
-            arguments: UpsertScreenArgument(true, dream),
+            arguments: UpsertScreenArgument(isEditing: true, dream: dream),
           );
         },
         backgroundColor: Colors.indigoAccent,

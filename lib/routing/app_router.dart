@@ -1,5 +1,4 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
-import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/presentation/bottom_tab/bottom_tab.dart';
 import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
@@ -29,14 +28,14 @@ class AppRouter {
       case RouteNames.register:
         return MaterialPageRoute(builder: (_) => RegisterPage());
       case RouteNames.menu:
-        final currIndex = routeSettings.arguments as int;
+        final currIndex = routeSettings.arguments! as int;
         return MaterialPageRoute(
             builder: (_) => BottomNavBarPage(
                   currIndex: currIndex,
                 ));
       case RouteNames.upsertDream:
-        UpsertScreenArgument args =
-            routeSettings.arguments as UpsertScreenArgument;
+        final args =
+            routeSettings.arguments! as UpsertScreenArgument;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => UpsertDreamBloc(
@@ -49,15 +48,15 @@ class AppRouter {
           ),
         );
       case RouteNames.dream:
-        final dream = routeSettings.arguments as Dream;
+        final dream = routeSettings.arguments! as Dream;
         return MaterialPageRoute(
           builder: (_) => DreamPage(
             dream: dream,
           ),
         );
       case RouteNames.setting:
-        ProfileSettingArguments args =
-            routeSettings.arguments as ProfileSettingArguments;
+        final args =
+            routeSettings.arguments! as ProfileSettingArguments;
         return PageRouteBuilder(
           settings:
               routeSettings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works

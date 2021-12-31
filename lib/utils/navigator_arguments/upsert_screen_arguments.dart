@@ -4,5 +4,5 @@ class UpsertScreenArgument {
   final bool isEditing;
   final Dream? dream;
 
-  UpsertScreenArgument(this.isEditing, this.dream);
+  UpsertScreenArgument({required this.isEditing, this.dream});
 }

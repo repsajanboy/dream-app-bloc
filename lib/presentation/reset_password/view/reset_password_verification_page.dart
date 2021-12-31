@@ -3,6 +3,7 @@ import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ResetPasswordVerificationPage extends StatelessWidget {
   ResetPasswordVerificationPage({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class ResetPasswordVerificationPage extends StatelessWidget {
                     inputCode = value;
                   },
                   onEditing: (bool value) {
-                    print(value);
+                    if (!value) FocusScope.of(context).unfocus();
                   },
                 ),
               ),
@@ -53,12 +54,16 @@ class ResetPasswordVerificationPage extends StatelessWidget {
                   ),
                   onPressed: () async {
                     final code = await _sharedPref.readStr("verifyCode");
-                    print(code);
-                    print(inputCode);
                     if (code == inputCode) {
-                      Navigator.pushReplacementNamed(context, RouteNames.resetPassword);
+                      Navigator.pushReplacementNamed(
+                          context, RouteNames.resetPassword);
                     } else {
-                      print("wrong code");
+                      Fluttertoast.showToast(
+                          msg: "The code is not valid. Try again",
+                          gravity: ToastGravity.TOP,
+                          toastLength: Toast.LENGTH_SHORT,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white);
                     }
                   },
                   child: const Padding(

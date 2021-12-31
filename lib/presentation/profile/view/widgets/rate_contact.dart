@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 
 class RateAndContactWidget extends StatelessWidget {
   const RateAndContactWidget({Key? key}) : super(key: key);

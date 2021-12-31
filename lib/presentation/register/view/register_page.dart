@@ -16,11 +16,11 @@ class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-  bool _keyboardVisible = false;
-  bool reversed = false;
+  final bool reversed = false;
 
   @override
   Widget build(BuildContext context) {
+    bool _keyboardVisible = false;
     _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     final bool visible = !(reversed ? !_keyboardVisible : _keyboardVisible);
     return WillPopScope(
@@ -33,15 +33,15 @@ class RegisterPage extends StatelessWidget {
             listener: (context, state) {
               final formStatus = state.formStatus;
               if (formStatus is SubmissionSuccess) {
-                Navigator.pushReplacementNamed(context, RouteNames.menu, arguments: 0);
+                Navigator.pushReplacementNamed(context, RouteNames.menu,
+                    arguments: 0);
               } else if (formStatus is SubmissionFailed) {
                 Fluttertoast.showToast(
-                  msg: formStatus.error!.errorMessage(),
-                  gravity: ToastGravity.TOP,
-                  toastLength: Toast.LENGTH_LONG,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white
-                );
+                    msg: formStatus.error!.errorMessage(),
+                    gravity: ToastGravity.TOP,
+                    toastLength: Toast.LENGTH_LONG,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white);
               }
             },
             child: Container(

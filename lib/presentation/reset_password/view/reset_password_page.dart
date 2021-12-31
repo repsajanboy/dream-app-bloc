@@ -1,4 +1,3 @@
-import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,6 @@ class ResetPasswordPage extends StatelessWidget {
       body: BlocListener<NewPasswordBloc, NewPasswordState>(
         listener: (context, state) {
           if (state.formStatus is SubmissionSuccess) {
-            print("here na");
             Navigator.pop(context);
           }
         },

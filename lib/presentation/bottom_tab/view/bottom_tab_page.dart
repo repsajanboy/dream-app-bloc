@@ -120,7 +120,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
           Navigator.pushNamed(
             context,
             RouteNames.upsertDream,
-            arguments: UpsertScreenArgument(false, null),
+            arguments: UpsertScreenArgument(isEditing: false),
           );
         },
         child: const Icon(
