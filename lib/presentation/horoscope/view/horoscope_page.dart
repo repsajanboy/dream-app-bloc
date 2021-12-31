@@ -79,6 +79,9 @@ class HoroscopePage extends StatelessWidget {
                     Expanded(
                       child: BlocBuilder<ChooseSignCubit, ChooseSignState>(
                         builder: (context, state) {
+                          if (_selectedSign.isEmpty) {
+                            _selectedSign = state.sign;
+                          }
                           return DropdownButton(
                             isExpanded: true,
                             iconSize: 32.0,
@@ -135,18 +138,21 @@ class HoroscopePage extends StatelessWidget {
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: 20.0,
+                  child: Divider(thickness: 1.5),
+                ),
                 Expanded(
                   child: BlocBuilder<HoroscopeBloc, HoroscopeState>(
                     builder: (context, state) {
                       if (state is HoroscopeFetchedSuccess) {
                         return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               state.horoscope.description,
                               style: TextStyle(
                                 color: Colors.indigo.shade900,
-                                fontSize: 32.0,
+                                fontSize: 24.0,
                                 fontWeight: FontWeight.w300,
                                 fontStyle: FontStyle.italic,
                               ),
