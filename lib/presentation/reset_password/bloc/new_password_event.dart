@@ -15,4 +15,10 @@ class ConfirmPasswordChanged extends NewPasswordEvent {
   ConfirmPasswordChanged({this.confirmPassword});
 }
 
+class IsObscureTextChanged extends NewPasswordEvent {
+  final bool? isObscureText;
+
+  IsObscureTextChanged({this.isObscureText});
+}
+
 class NewPasswordSubmitted extends NewPasswordEvent {}

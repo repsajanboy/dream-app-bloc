@@ -57,9 +57,25 @@ class ResetPasswordPage extends StatelessWidget {
                         ),
                         child: TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: !state.isObscureText,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             errorStyle: context.typo.authErrorStyle(),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                context.read<NewPasswordBloc>().add(
+                                      IsObscureTextChanged(
+                                        isObscureText: !state.isObscureText,
+                                      ),
+                                    );
+                              },
+                              icon: Icon(
+                                state.isObscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.black54,
+                              ),
+                            ),
                             hintText: 'New password',
                             hintStyle: const TextStyle(
                               color: Colors.black54,
@@ -89,9 +105,25 @@ class ResetPasswordPage extends StatelessWidget {
                         ),
                         child: TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: !state.isObscureText,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             errorStyle: context.typo.authErrorStyle(),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                context.read<NewPasswordBloc>().add(
+                                      IsObscureTextChanged(
+                                        isObscureText: !state.isObscureText,
+                                      ),
+                                    );
+                              },
+                              icon: Icon(
+                                state.isObscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.black54,
+                              ),
+                            ),
                             hintText: 'Confirm password',
                             hintStyle: const TextStyle(
                               color: Colors.black54,

@@ -21,6 +21,8 @@ class NewPasswordBloc extends Bloc<NewPasswordEvent, NewPasswordState> {
       yield state.copyWith(newPassword: event.newPassword);
     } else if (event is ConfirmPasswordChanged) {
       yield state.copyWith(confirmPassword: event.confirmPassword);
+    } else if (event is IsObscureTextChanged) {
+      yield state.copyWith(isObscureText: event.isObscureText);
     } else if (event is NewPasswordSubmitted) {
       yield state.copyWith(formStatus: FormSubmitting());
       try {
