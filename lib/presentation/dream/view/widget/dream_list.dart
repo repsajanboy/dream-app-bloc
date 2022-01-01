@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../dream.dart';
+import 'dream_failed_fetch.dart';
+import 'dream_list_empty.dart';
 
 class DreamList extends StatelessWidget {
   const DreamList({Key? key}) : super(key: key);
@@ -17,10 +19,10 @@ class DreamList extends StatelessWidget {
       builder: (context, state) {
         switch (state.status) {
           case DreamStatus.error:
-            return const Center(child: Text('failed to fetch dreams'));
+            return const DreamFailedFetch();
           case DreamStatus.success:
             if (state.dreams.isEmpty) {
-              return const Center(child: Text('no dreams'));
+              return const DreamListEmpty();
             }
             return ListView.builder(
               shrinkWrap: true,

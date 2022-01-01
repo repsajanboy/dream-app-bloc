@@ -1,11 +1,14 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/data/dream/dream_rates.dart';
 import 'package:dream_app_bloc/presentation/dream/dream.dart';
+import 'package:dream_app_bloc/presentation/dream/view/widget/dream_failed_fetch.dart';
 import 'package:dream_app_bloc/presentation/dream_favorites/favorite_dreams.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'widget/no_favorite_dream.dart';
 
 class FavoriteDreamsPage extends StatelessWidget {
   const FavoriteDreamsPage({Key? key}) : super(key: key);
@@ -35,11 +38,10 @@ class FavoriteDreamsPage extends StatelessWidget {
                 builder: (context, state) {
                   switch (state.status) {
                     case FavoriteDreamStatus.error:
-                      return const Center(
-                          child: Text('failed to fetch dreams'));
+                      return const DreamFailedFetch();
                     case FavoriteDreamStatus.success:
                       if (state.dreams.isEmpty) {
-                        return const Center(child: Text('no saved dreams'));
+                        return const NoFavoriteDream();
                       }
                       return ListView.separated(
                         shrinkWrap: true,

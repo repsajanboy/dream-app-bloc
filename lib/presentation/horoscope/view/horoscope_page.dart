@@ -179,8 +179,20 @@ class HoroscopePage extends StatelessWidget {
                           ),
                         );
                       } else {
-                        return const Center(
-                          child: Text('Select your sign'),
+                        return Center(
+                          child: Column(
+                            children: [
+                              Image.asset('assets/icons/selectsign.jpg'),
+                              const Text(
+                                'Select your sign',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.dreams,
+                                ),
+                              ),
+                            ],
+                          ),
                         );
                       }
                     },

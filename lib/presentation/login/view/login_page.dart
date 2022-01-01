@@ -39,7 +39,7 @@ class LoginPage extends StatelessWidget {
                 Fluttertoast.showToast(
                     msg: formStatus.error!.errorMessage(),
                     gravity: ToastGravity.TOP,
-                    toastLength: Toast.LENGTH_LONG,
+                    toastLength: Toast.LENGTH_SHORT,
                     backgroundColor: Colors.red,
                     textColor: Colors.white);
               }
