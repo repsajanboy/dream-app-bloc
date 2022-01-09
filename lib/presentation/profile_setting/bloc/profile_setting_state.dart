@@ -6,6 +6,8 @@ class ProfileSettingState extends Equatable {
   final String email;
   final bool someDataChanged;
   final FormSubmissionStatus formStatus;
+  final bool isDailyEnabled;
+  final TimeOfDay timeOfDay;
 
   const ProfileSettingState({
     this.firstName = '',
@@ -13,14 +15,17 @@ class ProfileSettingState extends Equatable {
     this.email = '',
     this.someDataChanged = false,
     this.formStatus = const InitialFormStatus(),
+    this.isDailyEnabled = false,
+    this.timeOfDay = const TimeOfDay(hour: 8, minute: 0),
   });
-
   ProfileSettingState copyWith({
     String? firstName,
     String? lastName,
     String? email,
     bool? someDataChanged,
-    FormSubmissionStatus? formStatus
+    FormSubmissionStatus? formStatus,
+    bool? isDailyEnabled,
+    TimeOfDay? timeOfDay,
   }) {
     return ProfileSettingState(
       firstName: firstName ?? this.firstName,
@@ -28,6 +33,8 @@ class ProfileSettingState extends Equatable {
       email: email ?? this.email,
       someDataChanged: someDataChanged ?? this.someDataChanged,
       formStatus: formStatus ?? this.formStatus,
+      isDailyEnabled: isDailyEnabled ?? this.isDailyEnabled,
+      timeOfDay: timeOfDay ?? this.timeOfDay,
     );
   }
 
@@ -37,7 +44,15 @@ class ProfileSettingState extends Equatable {
   }
 
   @override
-  List<Object> get props => [firstName, lastName, email, formStatus, someDataChanged];
+  List<Object> get props => [
+        firstName,
+        lastName,
+        email,
+        formStatus,
+        someDataChanged,
+        isDailyEnabled,
+        timeOfDay
+      ];
 }
 
 class ProfileSettingInitial extends ProfileSettingState {}

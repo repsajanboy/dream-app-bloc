@@ -4,7 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
+import 'package:dream_app_bloc/utils/shared_pref.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 part 'profile_setting_event.dart';
 part 'profile_setting_state.dart';
@@ -15,6 +17,7 @@ class ProfileSettingBloc
       : super(ProfileSettingInitial());
 
   final UserRepository userRepository;
+  final _sharedPref = SharedPref();
 
   @override
   Stream<ProfileSettingState> mapEventToState(
@@ -44,6 +47,11 @@ class ProfileSettingBloc
       }
     } else if (event is ProfileEditDataChanged) {
       yield state.copyWith(someDataChanged: event.someDataChanged);
+    } else if (event is IsDailyEnabledChange) {
+      _sharedPref.saveBool(key: "Enable", value: event.isDailyEnabled);
+      yield state.copyWith(isDailyEnabled: event.isDailyEnabled);
+    } else if (event is ProfileTimeOfDayChanged) {
+      yield state.copyWith(timeOfDay: event.timeOfDay);
     }
   }
 
@@ -51,10 +59,15 @@ class ProfileSettingBloc
     ProfileSettingEdit event,
     ProfileSettingState state,
   ) async {
+    final isEnabled = await _sharedPref.readBool("Enable");
+    final tod = await _sharedPref.readStr("timeOfDay");
+    final todd = tod!.split(":");
     final profileEdit = state.copyWith(
       firstName: event.user!.firstName,
       lastName: event.user!.lastName,
       email: event.user!.email,
+      isDailyEnabled: isEnabled,
+      timeOfDay: TimeOfDay(hour: int.parse(todd[0]), minute: int.parse(todd[1].replaceAll(" AM", "")))
     );
     return profileEdit;
   }

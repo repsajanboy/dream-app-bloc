@@ -38,3 +38,15 @@ class ProfileEditDataChanged extends ProfileSettingEvent {
 
   const ProfileEditDataChanged({this.someDataChanged});
 }
+
+class IsDailyEnabledChange extends ProfileSettingEvent {
+  final bool? isDailyEnabled;
+
+  const IsDailyEnabledChange({this.isDailyEnabled});
+}
+
+class ProfileTimeOfDayChanged extends ProfileSettingEvent {
+  final TimeOfDay? timeOfDay;
+
+  const ProfileTimeOfDayChanged({this.timeOfDay});
+}
