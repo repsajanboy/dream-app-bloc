@@ -1,5 +1,6 @@
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/style/colors.dart';
+import 'package:dream_app_bloc/utils/notifications.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,6 +81,11 @@ class EnableNotificationToggle extends StatelessWidget {
                           onChanged: (bool value) {
                             context.read<ProfileSettingBloc>().add(
                                 IsDailyEnabledChange(isDailyEnabled: value));
+                            if (value) {
+                              createDailyReminderNotification(state.timeOfDay);
+                            } else {
+                              cancelScheduledNotifications();
+                            }
                           },
                           activeColor: Colors.indigoAccent,
                           activeTrackColor: Colors.indigo,
@@ -110,10 +116,11 @@ class EnableNotificationToggle extends StatelessWidget {
                                   context: context,
                                   initialTime: state.timeOfDay,
                                 ).then((time) {
-                                  _sharedPref.saveStr("timeOfDay", time!.format(context).toString());
+                                  _sharedPref.saveStr("timeOfDay",
+                                      time!.format(context).toString());
                                   context.read<ProfileSettingBloc>().add(
-                                      ProfileTimeOfDayChanged(
-                                          timeOfDay: time));
+                                      ProfileTimeOfDayChanged(timeOfDay: time));
+                                  createDailyReminderNotification(time);
                                 });
                               },
                               child: Text(

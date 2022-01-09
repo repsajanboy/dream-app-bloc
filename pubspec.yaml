@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  awesome_notifications: ^0.6.19
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
   email_validator: ^2.0.1
