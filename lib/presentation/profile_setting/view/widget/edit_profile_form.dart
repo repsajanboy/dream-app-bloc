@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/data/user/user.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,11 +12,18 @@ class EditProfileForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.indigo.shade900,
-        borderRadius: const BorderRadius.all(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
           Radius.circular(15.0),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black45,
+            blurRadius: 10,
+            offset: Offset(4, 8), // Shadow position
+          ),
+        ],
       ),
       margin: const EdgeInsets.all(20.0),
       padding: const EdgeInsets.all(20.0),
@@ -35,7 +43,7 @@ class EditProfileForm extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        color: Colors.indigo.shade800.withOpacity(0.5),
+        color: Colors.grey.shade300,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: BlocBuilder<ProfileSettingBloc, ProfileSettingState>(
@@ -44,7 +52,7 @@ class EditProfileForm extends StatelessWidget {
             initialValue:
                 state.firstName != "" ? state.firstName : user!.firstName,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            cursorColor: Colors.white,
+            cursorColor: AppColors.dreams,
             style: context.typo.editProfileStyle(),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -71,7 +79,7 @@ class EditProfileForm extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        color: Colors.indigo.shade800.withOpacity(0.5),
+        color: Colors.grey.shade300,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: BlocBuilder<ProfileSettingBloc, ProfileSettingState>(
@@ -108,7 +116,7 @@ class EditProfileForm extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        color: Colors.indigo.shade800.withOpacity(0.5),
+        color: Colors.grey.shade300,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: BlocBuilder<ProfileSettingBloc, ProfileSettingState>(

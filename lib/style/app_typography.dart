@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
@@ -18,7 +19,7 @@ class AppTextStyle {
 
   TextStyle authHintStyle() {
     return const TextStyle(
-      color: Colors.white70,
+      color: AppColors.dreams,
       fontWeight: FontWeight.w800,
     );
   }
@@ -46,7 +47,7 @@ class AppTextStyle {
 
   TextStyle editProfileStyle(){
     return const TextStyle(
-      color: Colors.white,
+      color: AppColors.dreams,
       fontSize: 18.0,
       fontWeight: FontWeight.w500,
     );

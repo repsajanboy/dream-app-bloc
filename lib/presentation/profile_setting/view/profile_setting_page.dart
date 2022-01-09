@@ -1,9 +1,11 @@
 import 'package:dream_app_bloc/authentication/authentication.dart';
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/presentation/profile_setting/profile_setting.dart';
+import 'package:dream_app_bloc/presentation/profile_setting/view/widget/enable_notification_toggle.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +48,7 @@ class ProfileSettingPage extends StatelessWidget {
           ),
           child: Scaffold(
             resizeToAvoidBottomInset: false,
-            backgroundColor: Colors.transparent,
+            backgroundColor: AppColors.background,
             body: MultiBlocListener(
               listeners: [
                 BlocListener<AuthenticationBloc, AuthenticationState>(
@@ -88,6 +90,7 @@ class ProfileSettingPage extends StatelessWidget {
                             EditProfileForm(
                               user: user,
                             ),
+                            EnableNotificationToggle(),
                             _logoutButton(context),
                           ],
                         ),
@@ -168,16 +171,16 @@ class ProfileSettingPage extends StatelessWidget {
             width: 150,
             height: 150,
             margin: const EdgeInsets.only(top: 10, right: 20.0),
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(18.0)),
-              boxShadow: const [
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(18.0)),
+              boxShadow: [
                 BoxShadow(
                   color: Colors.black45,
                   blurRadius: 10,
                   offset: Offset(4, 8), // Shadow position
                 ),
               ],
-              color: Colors.indigo.shade900,
+              color: Colors.white,
             ),
             child: Stack(
               children: [
@@ -188,7 +191,7 @@ class ProfileSettingPage extends StatelessWidget {
                       return Text(
                         '${user.firstName[0]}${user.lastName[0]}',
                         style: const TextStyle(
-                          color: Colors.white54,
+                          color: Colors.black54,
                           fontSize: 64.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -200,7 +203,7 @@ class ProfileSettingPage extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Icon(
                     Icons.add_a_photo_rounded,
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.black26.withOpacity(0.2),
                     size: 48.0,
                   ),
                 ),
