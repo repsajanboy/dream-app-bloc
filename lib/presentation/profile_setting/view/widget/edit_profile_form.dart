@@ -1,7 +1,7 @@
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/style/colors.dart';
-import 'package:flutter/material.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../profile_setting.dart';

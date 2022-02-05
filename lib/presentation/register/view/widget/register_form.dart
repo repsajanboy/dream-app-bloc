@@ -1,8 +1,8 @@
 import 'package:dream_app_bloc/presentation/register/register.dart';
+import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 
 class RegisterForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;

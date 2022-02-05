@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:dream_app_bloc/presentation/login/bloc/login_bloc.dart';
 import 'package:dream_app_bloc/presentation/login/view/widgets/login_form.dart';
 import 'package:dream_app_bloc/presentation/login/view/widgets/login_header.dart';
@@ -9,6 +5,9 @@ import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/utils/extension/string_extension.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'widgets/login_button_md.dart';
 

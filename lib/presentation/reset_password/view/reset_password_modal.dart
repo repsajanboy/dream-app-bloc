@@ -1,9 +1,9 @@
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
+import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../reset_password.dart';

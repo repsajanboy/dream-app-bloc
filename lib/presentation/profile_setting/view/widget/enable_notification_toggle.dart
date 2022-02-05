@@ -1,4 +1,3 @@
-import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/notifications.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';

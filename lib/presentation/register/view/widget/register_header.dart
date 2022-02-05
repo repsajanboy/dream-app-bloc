@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
+import 'package:flutter/material.dart';
 
 class RegisterHeader extends StatelessWidget {
   const RegisterHeader({Key? key, required this.visible}) : super(key: key);

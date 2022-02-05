@@ -6,11 +6,11 @@ import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
+import 'package:dream_app_bloc/utils/extension/string_extension.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:dream_app_bloc/utils/extension/string_extension.dart';
 
 import 'widget/edit_profile_form.dart';
 

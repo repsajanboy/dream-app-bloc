@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:dream_app_bloc/presentation/register/register.dart';
 import 'package:dream_app_bloc/presentation/register/view/widget/register_header.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
-import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:dream_app_bloc/utils/extension/string_extension.dart';
+import 'package:dream_app_bloc/utils/form_submission_status.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'widget/register_button.dart';
 import 'widget/register_form.dart';
