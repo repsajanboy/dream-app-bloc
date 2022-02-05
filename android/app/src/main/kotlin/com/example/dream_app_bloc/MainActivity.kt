@@ -1,4 +1,4 @@
-package com.example.dream_app_bloc
+package com.dreamjournal
 
 import io.flutter.embedding.android.FlutterActivity
 
