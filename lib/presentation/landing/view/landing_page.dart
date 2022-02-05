@@ -31,7 +31,8 @@ class LandingPage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10.0),
-                            decoration: const BoxDecoration(color: Colors.white),
+                            decoration:
+                                const BoxDecoration(color: Colors.white),
                             child: Text(
                               'DJ',
                               style: TextStyle(
@@ -97,9 +98,11 @@ class LandingPage extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushNamed(context, RouteNames.login);
                         },
-                        child: const Text(
-                          'I ALREADY HAVE AN ACCOUNT',
-                          style: TextStyle(letterSpacing: 1.5, fontSize: 16.0),
+                        child: const Center(
+                          child: Text(
+                            'I ALREADY HAVE AN ACCOUNT',
+                            style: TextStyle(letterSpacing: 1.0),
+                          ),
                         ),
                       ),
                     ),
