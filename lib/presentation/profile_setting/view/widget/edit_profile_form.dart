@@ -57,7 +57,7 @@ class EditProfileForm extends StatelessWidget {
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'First Name',
-              hintStyle: context.typo.authHintStyle(),
+              hintStyle: context.typo.editProfileHintStyle(),
               errorStyle: context.typo.authErrorStyle(),
             ),
             validator: (value) => null,
@@ -88,12 +88,12 @@ class EditProfileForm extends StatelessWidget {
             initialValue:
                 state.lastName != "" ? state.lastName : user!.lastName,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            cursorColor: Colors.white,
+            cursorColor: AppColors.dreams,
             style: context.typo.editProfileStyle(),
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Last Name',
-              hintStyle: context.typo.authHintStyle(),
+              hintStyle: context.typo.editProfileHintStyle(),
               errorStyle: context.typo.authErrorStyle(),
             ),
             validator: (value) => null,
@@ -124,12 +124,12 @@ class EditProfileForm extends StatelessWidget {
           return TextFormField(
             initialValue: state.email != "" ? state.email : user!.email,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            cursorColor: Colors.white,
+            cursorColor: AppColors.dreams,
             style: context.typo.editProfileStyle(),
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Email Address',
-              hintStyle: context.typo.authHintStyle(),
+              hintStyle: context.typo.editProfileHintStyle(),
               errorStyle: context.typo.authErrorStyle(),
             ),
             validator: (value) => null,

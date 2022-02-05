@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:dream_app_bloc/data/dream/post_dream.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-const baseUrl = "http://10.0.2.2:3000";
-
+//const baseUrl = "http://10.0.2.2:3000";
+const baseUrl = "https://dream-journal-app.herokuapp.com";
 class ApiClient {
   final _dio = Dio();
 

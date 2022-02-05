@@ -19,7 +19,7 @@ class AppTextStyle {
 
   TextStyle authHintStyle() {
     return const TextStyle(
-      color: AppColors.dreams,
+      color: Colors.white60,
       fontWeight: FontWeight.w800,
     );
   }
@@ -50,6 +50,13 @@ class AppTextStyle {
       color: AppColors.dreams,
       fontSize: 18.0,
       fontWeight: FontWeight.w500,
+    );
+  }
+
+    TextStyle editProfileHintStyle() {
+    return const TextStyle(
+      color: AppColors.dreams,
+      fontWeight: FontWeight.w800,
     );
   }
 
