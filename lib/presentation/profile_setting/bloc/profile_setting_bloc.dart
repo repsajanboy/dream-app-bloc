@@ -59,15 +59,21 @@ class ProfileSettingBloc
     ProfileSettingEdit event,
     ProfileSettingState state,
   ) async {
+    bool isNotEmpty = false;
     final isEnabled = await _sharedPref.readBool("Enable");
+    List<String> todd = [];
     final tod = await _sharedPref.readStr("timeOfDay");
-    final todd = tod!.split(":");
+    if(tod != null && isEnabled == true){
+      isNotEmpty = true;
+      todd = tod.split(":");
+    }
+    
     final profileEdit = state.copyWith(
       firstName: event.user!.firstName,
       lastName: event.user!.lastName,
       email: event.user!.email,
       isDailyEnabled: isEnabled,
-      timeOfDay: TimeOfDay(hour: int.parse(todd[0]), minute: int.parse(todd[1].replaceAll(" AM", "")))
+      timeOfDay: isNotEmpty ? TimeOfDay(hour: int.parse(todd[0]), minute: int.parse(todd[1].replaceAll(" AM", ""))) : null
     );
     return profileEdit;
   }

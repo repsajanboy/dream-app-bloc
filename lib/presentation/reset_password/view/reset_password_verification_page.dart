@@ -113,6 +113,7 @@ class ResetPasswordVerificationPage extends StatelessWidget {
                           onPressed: () async {
                             final code =
                                 await _sharedPref.readStr("verifyCode");
+                            print(code);
                             if (code == inputCode) {
                               Navigator.pushReplacementNamed(
                                   context, RouteNames.resetPassword);
