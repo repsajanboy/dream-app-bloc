@@ -4,6 +4,7 @@ import 'package:dream_app_bloc/presentation/dream_upsert/view/widgets/content_wi
 import 'package:dream_app_bloc/presentation/dream_upsert/view/widgets/rating_widget.dart';
 import 'package:dream_app_bloc/presentation/dream_upsert/view/widgets/title_save_widget.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/extension/string_extension.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
@@ -28,49 +29,6 @@ class UpsertDreamPage extends StatelessWidget {
     }
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.indigoAccent,
-      //   elevation: 0,
-      //   brightness: Brightness.dark,
-      //   leading: IconButton(
-      //     icon: const Icon(
-      //       Icons.arrow_back_rounded,
-      //       color: Colors.white,
-      //     ),
-      //     tooltip: 'Back',
-      //     onPressed: () {
-      //       if (_pageController.page == 0) {
-      //         Navigator.of(context).pop();
-      //       } else {
-      //         _pageController.previousPage(
-      //             curve: Curves.easeIn,
-      //             duration: const Duration(milliseconds: 200));
-      //       }
-      //     },
-      //   ),
-      //   actions: [
-      //     TextButton(
-      //       onPressed: () {
-      //         _pageController.nextPage(
-      //           curve: Curves.easeIn,
-      //           duration: const Duration(milliseconds: 200),
-      //         );
-      //       },
-      //       style: ButtonStyle(
-      //         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-      //       ),
-      //       child: BlocBuilder<UpsertDreamBloc, UpsertDreamState>(
-      //         builder: (context, state) {
-      //           if (state.pageViewIndex == 3) {
-      //             return Container();
-      //           } else {
-      //             return const Text('Next');
-      //           }
-      //         },
-      //       ),
-      //     ),
-      //   ],
-      // ),
       body: BlocListener<UpsertDreamBloc, UpsertDreamState>(
         listener: (context, state) {
           final formStatus = state.formStatus;
@@ -91,16 +49,7 @@ class UpsertDreamPage extends StatelessWidget {
         child: LoaderOverlay(
           overlayOpacity: 0.8,
           child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.indigoAccent,
-                  Colors.indigo.shade900,
-                ],
-              ),
-            ),
+            color: AppColors.background,
             child: Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).padding.top,),
@@ -112,7 +61,7 @@ class UpsertDreamPage extends StatelessWidget {
                       IconButton(
                         icon: const Icon(
                           Icons.arrow_back_rounded,
-                          color: Colors.white,
+                          color: AppColors.dreams,
                         ),
                         tooltip: 'Back',
                         onPressed: () {
@@ -134,7 +83,7 @@ class UpsertDreamPage extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
+                              MaterialStateProperty.all<Color>(AppColors.dreams),
                         ),
                         child: BlocBuilder<UpsertDreamBloc, UpsertDreamState>(
                           builder: (context, state) {

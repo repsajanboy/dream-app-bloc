@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,38 +19,47 @@ class TitleSaveWidget extends StatelessWidget {
         const Text(
           'Make your dream more memorable!',
           style: TextStyle(
-            fontSize: 22.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
           ),
+        ),
+        const SizedBox(
+          height: 10.0,
         ),
         Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 padding: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: Colors.indigo.shade900,
-                  borderRadius: const BorderRadius.all(
+                margin: const EdgeInsets.all(10.0),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
                     Radius.circular(15.0),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 10,
+                      offset: Offset(4, 8), // Shadow position
+                    ),
+                  ],
                 ),
                 child: Container(
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
-                    color: Colors.indigo.shade800.withOpacity(0.5),
+                    color: Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: BlocBuilder<UpsertDreamBloc, UpsertDreamState>(
                     builder: (context, state) {
                       return TextFormField(
-                        cursorColor: Colors.white,
+                        cursorColor: AppColors.dreams,
                         initialValue: isEditing ? state.title : '',
                         style: context.typo.upsertFormStyle(),
                         decoration: InputDecoration(
                           hintText: 'Add title to your here..',
-                          hintStyle: context.typo.authHintStyle(),
+                          hintStyle: context.typo.upsertHintStyle(),
                           border: InputBorder.none,
                         ),
                         onChanged: (value) {

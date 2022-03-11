@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dream_app_bloc/data/dream/dream_themes.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,18 +17,14 @@ class CategoriesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 20.0,
+          height: 10.0,
         ),
         const Text(
           'Themes:',
           style: TextStyle(
-            color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 22.0,
+            fontSize: 18.0,
           ),
-        ),
-        const SizedBox(
-          height: 8.0,
         ),
         Expanded(
           child: GridView.builder(
@@ -57,14 +54,15 @@ class CategoriesWidget extends StatelessWidget {
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(16.0),
-                              border: Border.all(
-                                width: selectedIndex == index ? 2.0 : 1.5,
-                                color: selectedIndex == index
-                                    ? Colors.black
-                                    : Colors.white.withOpacity(0.2),
-                              )),
+                            color: Colors.indigoAccent.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(16.0),
+                            border: Border.all(
+                              width: selectedIndex == index ? 2.0 : 1.5,
+                              color: selectedIndex == index
+                                  ? Colors.black
+                                  : Colors.indigoAccent.withOpacity(0.2),
+                            ),
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -80,8 +78,8 @@ class CategoriesWidget extends StatelessWidget {
                                 dreamThemes[index].theme,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                    fontSize: 18.0),
+                                    color: AppColors.dreams,
+                                    fontSize: 16.0),
                               ),
                             ],
                           ),

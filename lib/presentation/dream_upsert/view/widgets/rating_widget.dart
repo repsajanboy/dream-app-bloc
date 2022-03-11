@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/data/dream/dream_rates.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,20 +14,21 @@ class RatingWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 10.0),
         const Text(
           'How would you rate your dream?',
           style: TextStyle(
-            fontSize: 22.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
           ),
+        ),
+        const SizedBox(
+          height: 10.0,
         ),
         Expanded(
           child: BlocBuilder<UpsertDreamBloc, UpsertDreamState>(
             builder: (context, state) {
               return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     ratings[state.rate].emoji,
@@ -38,7 +40,7 @@ class RatingWidget extends StatelessWidget {
                     ratings[state.rate].rateStr,
                     style: const TextStyle(
                       fontSize: 32.0,
-                      color: Colors.white,
+                      color: AppColors.dreams,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -59,7 +61,7 @@ class RatingWidget extends StatelessWidget {
                                   .read<UpsertDreamBloc>()
                                   .add(UpsertRateChanged(rate: value.toInt()));
                             },
-                            activeColor: Colors.white,
+                            activeColor: Colors.indigoAccent,
                             inactiveColor: Colors.black45,
                           ),
                         ),

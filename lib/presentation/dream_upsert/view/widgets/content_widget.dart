@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,9 +25,8 @@ class ContentFormWidget extends StatelessWidget {
             const Text(
               'Date:',
               style: TextStyle(
-                color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 22.0,
+                fontSize: 18.0,
               ),
             ),
             Row(
@@ -42,15 +42,13 @@ class ContentFormWidget extends StatelessWidget {
                             Text(
                               DateFormat.yMMMMEEEEd().format(state.inputDate),
                               style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18.0,
+                                fontSize: 16.0,
                               ),
                             ),
                             IconButton(
                               icon: const Icon(
                                 Icons.calendar_today_rounded,
-                                color: Colors.white,
+                                color: AppColors.dreams,
                               ),
                               onPressed: () {
                                 showDatePicker(
@@ -77,7 +75,7 @@ class ContentFormWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 20.0,
+          height: 10.0,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,9 +83,8 @@ class ContentFormWidget extends StatelessWidget {
             const Text(
               'Story:',
               style: TextStyle(
-                color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 22.0,
+                fontSize: 18.0,
               ),
             ),
             const SizedBox(
@@ -95,16 +92,24 @@ class ContentFormWidget extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Colors.indigo.shade900,
-                borderRadius: const BorderRadius.all(
+              margin: const EdgeInsets.all(10.0),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
                   Radius.circular(15.0),
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black45,
+                    blurRadius: 10,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
               ),
               child: Container(
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
-                  color: Colors.indigo.shade800.withOpacity(0.5),
+                  color: Colors.grey.shade300,
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 child: BlocBuilder<UpsertDreamBloc, UpsertDreamState>(
@@ -115,11 +120,11 @@ class ContentFormWidget extends StatelessWidget {
                               ? state.content
                               : content!
                           : '',
-                      cursorColor: Colors.white,
+                      cursorColor: AppColors.dreams,
                       style: context.typo.upsertFormStyle(),
                       decoration: InputDecoration(
                         hintText: 'Describe your dream here in details...',
-                        hintStyle: context.typo.authHintStyle(),
+                        hintStyle: context.typo.upsertHintStyle(),
                         border: InputBorder.none,
                       ),
                       maxLines: 15,

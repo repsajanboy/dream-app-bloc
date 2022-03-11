@@ -62,9 +62,16 @@ class AppTextStyle {
 
   TextStyle upsertFormStyle(){
     return const TextStyle(
-      color: Colors.white,
+      color: AppColors.dreams,
       fontSize: 16.0,
       fontWeight: FontWeight.w500,
     );
   }
+    TextStyle upsertHintStyle() {
+    return const TextStyle(
+      color: AppColors.dreams,
+      fontWeight: FontWeight.w800,
+    );
+  }
 }
+
