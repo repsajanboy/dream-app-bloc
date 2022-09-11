@@ -68,7 +68,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
         index: state.currentIndex,
         children: items.map((e) => e.page).toList(),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: DecoratedBox(
         decoration: const BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -102,7 +102,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
             },
             items: items
                 .map((e) => BottomNavigationBarItem(
-                    icon: e.icon, label: e.title, activeIcon: e.activeIcon))
+                    icon: e.icon, label: e.title, activeIcon: e.activeIcon,),)
                 .toList(),
           ),
         ),

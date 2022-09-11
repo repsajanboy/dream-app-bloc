@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
@@ -29,12 +29,16 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       yield state.copyWith(formStatus: FormSubmitting());
       try {
         await authorizationRepository.register(
-            state.firstName, state.lastName, state.email, state.password);
+          state.firstName,
+          state.lastName,
+          state.email,
+          state.password,
+        );
         yield state.copyWith(formStatus: SubmissionSuccess());
       } on Exception catch (e) {
         yield state.copyWith(formStatus: SubmissionFailed(error: e.toString()));
       }
-    } else if (event is RegisterObscureTextChanged){
+    } else if (event is RegisterObscureTextChanged) {
       yield state.copyWith(isObscureText: event.isObscureText);
     }
   }

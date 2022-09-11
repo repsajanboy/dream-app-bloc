@@ -1,10 +1,11 @@
+// ignore_for_file: noop_primitive_operations
+
+import 'package:dream_app_bloc/presentation/profile_setting/profile_setting.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/notifications.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../profile_setting.dart';
 
 class EnableNotificationToggle extends StatelessWidget {
   EnableNotificationToggle({Key? key}) : super(key: key);
@@ -79,7 +80,7 @@ class EnableNotificationToggle extends StatelessWidget {
                           value: state.isDailyEnabled,
                           onChanged: (bool value) {
                             context.read<ProfileSettingBloc>().add(
-                                IsDailyEnabledChange(isDailyEnabled: value));
+                                IsDailyEnabledChange(isDailyEnabled: value),);
                             if (value) {
                               createDailyReminderNotification(state.timeOfDay);
                             } else {
@@ -116,9 +117,9 @@ class EnableNotificationToggle extends StatelessWidget {
                                   initialTime: state.timeOfDay,
                                 ).then((time) {
                                   _sharedPref.saveStr("timeOfDay",
-                                      time!.format(context).toString());
+                                      time!.format(context).toString(),);
                                   context.read<ProfileSettingBloc>().add(
-                                      ProfileTimeOfDayChanged(timeOfDay: time));
+                                      ProfileTimeOfDayChanged(timeOfDay: time),);
                                   createDailyReminderNotification(time);
                                 });
                               },

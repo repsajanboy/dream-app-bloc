@@ -1,6 +1,7 @@
 import 'package:dream_app_bloc/authentication/authentication.dart';
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/presentation/profile_setting/profile_setting.dart';
+import 'package:dream_app_bloc/presentation/profile_setting/view/widget/edit_profile_form.dart';
 import 'package:dream_app_bloc/presentation/profile_setting/view/widget/enable_notification_toggle.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
@@ -11,8 +12,6 @@ import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import 'widget/edit_profile_form.dart';
 
 class ProfileSettingPage extends StatelessWidget {
   const ProfileSettingPage({Key? key, required this.user}) : super(key: key);
@@ -35,7 +34,7 @@ class ProfileSettingPage extends StatelessWidget {
       ],
       child: WillPopScope(
         onWillPop: () async => false,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -65,15 +64,19 @@ class ProfileSettingPage extends StatelessWidget {
                   listener: (context, state) {
                     final formStatus = state.formStatus;
                     if (formStatus is SubmissionSuccess) {
-                      Navigator.pushNamed(context, RouteNames.menu,
-                          arguments: 4);
+                      Navigator.pushNamed(
+                        context,
+                        RouteNames.menu,
+                        arguments: 4,
+                      );
                     } else if (formStatus is SubmissionFailed) {
                       Fluttertoast.showToast(
-                          msg: formStatus.error!.errorMessage(),
-                          gravity: ToastGravity.TOP,
-                          toastLength: Toast.LENGTH_LONG,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white);
+                        msg: formStatus.error!.errorMessage(),
+                        gravity: ToastGravity.TOP,
+                        toastLength: Toast.LENGTH_LONG,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                      );
                     }
                   },
                 ),
@@ -148,7 +151,9 @@ class ProfileSettingPage extends StatelessWidget {
                   context.read<ProfileSettingBloc>().add(ProfileSaveChanges());
                 },
                 style: TextButton.styleFrom(
-                    primary: Colors.white, backgroundColor: Colors.indigoAccent),
+                  primary: Colors.white,
+                  backgroundColor: Colors.indigoAccent,
+                ),
                 child: const Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text('SAVE CHANGES'),

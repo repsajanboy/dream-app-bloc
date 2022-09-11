@@ -1,9 +1,8 @@
+import 'package:dream_app_bloc/presentation/horoscope/horoscope.dart';
 import 'package:dream_app_bloc/repositories/horoscope_repository.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../horoscope.dart';
 
 class HoroscopePage extends StatelessWidget {
   HoroscopePage({Key? key}) : super(key: key);
@@ -24,7 +23,7 @@ class HoroscopePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    String _selectedSign = "";
+    String selectedSign = "";
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -79,8 +78,8 @@ class HoroscopePage extends StatelessWidget {
                     Expanded(
                       child: BlocBuilder<ChooseSignCubit, ChooseSignState>(
                         builder: (context, state) {
-                          if (_selectedSign.isEmpty) {
-                            _selectedSign = state.sign;
+                          if (selectedSign.isEmpty) {
+                            selectedSign = state.sign;
                           }
                           return DropdownButton(
                             isExpanded: true,
@@ -105,7 +104,7 @@ class HoroscopePage extends StatelessWidget {
                               context
                                   .read<ChooseSignCubit>()
                                   .changeSelectedSign(newSign.toString());
-                              _selectedSign = newSign.toString();
+                              selectedSign = newSign.toString();
                             },
                           );
                         },
@@ -121,11 +120,11 @@ class HoroscopePage extends StatelessWidget {
                         onPressed: () {
                           context
                               .read<HoroscopeBloc>()
-                              .add(HoroscopeFetched(sign: _selectedSign));
+                              .add(HoroscopeFetched(sign: selectedSign));
                         },
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
-                            primary: Colors.indigoAccent),
+                            primary: Colors.indigoAccent,),
                         child: const Text(
                           'Get Predictions',
                           style: TextStyle(

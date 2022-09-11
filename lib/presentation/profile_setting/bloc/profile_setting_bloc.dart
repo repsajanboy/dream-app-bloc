@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'profile_setting_event.dart';
 part 'profile_setting_state.dart';
@@ -63,17 +63,22 @@ class ProfileSettingBloc
     final isEnabled = await _sharedPref.readBool("Enable");
     List<String> todd = [];
     final tod = await _sharedPref.readStr("timeOfDay");
-    if(tod != null && isEnabled == true){
+    if (tod != null && isEnabled == true) {
       isNotEmpty = true;
       todd = tod.split(":");
     }
-    
+
     final profileEdit = state.copyWith(
       firstName: event.user!.firstName,
       lastName: event.user!.lastName,
       email: event.user!.email,
       isDailyEnabled: isEnabled,
-      timeOfDay: isNotEmpty ? TimeOfDay(hour: int.parse(todd[0]), minute: int.parse(todd[1].replaceAll(" AM", ""))) : null
+      timeOfDay: isNotEmpty
+          ? TimeOfDay(
+              hour: int.parse(todd[0]),
+              minute: int.parse(todd[1].replaceAll(" AM", "")),
+            )
+          : null,
     );
     return profileEdit;
   }

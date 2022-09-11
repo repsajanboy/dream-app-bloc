@@ -10,4 +10,3 @@ class ProfileFetched extends ProfileEvent {
   @override
   List<Object> get props => [];
 }
-

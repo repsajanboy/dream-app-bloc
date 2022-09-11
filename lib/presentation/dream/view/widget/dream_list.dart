@@ -1,14 +1,13 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/data/dream/dream_rates.dart';
+import 'package:dream_app_bloc/presentation/dream/dream.dart';
+import 'package:dream_app_bloc/presentation/dream/view/widget/dream_failed_fetch.dart';
+import 'package:dream_app_bloc/presentation/dream/view/widget/dream_list_empty.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
-import '../../dream.dart';
-import 'dream_failed_fetch.dart';
-import 'dream_list_empty.dart';
 
 class DreamList extends StatelessWidget {
   const DreamList({Key? key}) : super(key: key);
@@ -59,9 +58,10 @@ class DreamList extends StatelessWidget {
               Text(
                 DateFormat.d().format(dream.inputDate),
                 style: const TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.dreams),
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.dreams,
+                ),
               ),
               Text(
                 DateFormat.MMM().format(dream.inputDate).toUpperCase(),
@@ -98,8 +98,9 @@ class DreamList extends StatelessWidget {
                       child: Text(
                         ratings[dream.rate].emoji,
                         style: TextStyle(
-                            fontSize: 48.0,
-                            color: Colors.grey.withOpacity(0.4)),
+                          fontSize: 48.0,
+                          color: Colors.grey.withOpacity(0.4),
+                        ),
                       ),
                     ),
                     Column(
@@ -108,9 +109,10 @@ class DreamList extends StatelessWidget {
                         Text(
                           dream.title,
                           style: const TextStyle(
-                              color: AppColors.dreams,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                            color: AppColors.dreams,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                          ),
                         ),
                         const SizedBox(height: 4.0),
                         Text(
@@ -141,7 +143,9 @@ class DreamList extends StatelessWidget {
                               dream.favorite
                                   ? Icons.favorite
                                   : Icons.favorite_border_rounded,
-                              color: dream.favorite ? Colors.red.withOpacity(0.8) : Colors.black45,
+                              color: dream.favorite
+                                  ? Colors.red.withOpacity(0.8)
+                                  : Colors.black45,
                             )
                           ],
                         ),

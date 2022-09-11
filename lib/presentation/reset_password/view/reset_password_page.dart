@@ -1,10 +1,9 @@
+import 'package:dream_app_bloc/presentation/reset_password/reset_password.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../reset_password.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   ResetPasswordPage({Key? key}) : super(key: key);
@@ -135,7 +134,10 @@ class ResetPasswordPage extends StatelessWidget {
                               : 'Password does not match.',
                           onChanged: (value) {
                             context.read<NewPasswordBloc>().add(
-                                ConfirmPasswordChanged(confirmPassword: value));
+                                  ConfirmPasswordChanged(
+                                    confirmPassword: value,
+                                  ),
+                                );
                           },
                         ),
                       );

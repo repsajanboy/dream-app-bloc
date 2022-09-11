@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:dream_app_bloc/presentation/reset_password/reset_password.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
@@ -6,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../reset_password.dart';
 
 class ResetPasswordVerificationPage extends StatelessWidget {
   ResetPasswordVerificationPage({Key? key}) : super(key: key);
@@ -20,7 +21,8 @@ class ResetPasswordVerificationPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ResetPasswordCubit(
-              authorizationRepository: context.read<AuthorizationRepository>()),
+            authorizationRepository: context.read<AuthorizationRepository>(),
+          ),
         ),
       ],
       child: Scaffold(
@@ -56,16 +58,18 @@ class ResetPasswordVerificationPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 18.0),
                       const Text(
-                          'Please enter the 6 digit code we sent to your email'),
+                        'Please enter the 6 digit code we sent to your email',
+                      ),
                       const SizedBox(height: 18.0),
                       Center(
                         child: VerificationCode(
-                            length: 6,
-                            underlineColor: Colors.indigo,
-                            onCompleted: (String value) {
-                              inputCode = value;
-                            },
-                            onEditing: (bool value) {}),
+                          length: 6,
+                          underlineColor: Colors.indigo,
+                          onCompleted: (String value) {
+                            inputCode = value;
+                          },
+                          onEditing: (bool value) {},
+                        ),
                       ),
                       const SizedBox(height: 18.0),
                       Row(
@@ -116,7 +120,9 @@ class ResetPasswordVerificationPage extends StatelessWidget {
                             print(code);
                             if (code == inputCode) {
                               Navigator.pushReplacementNamed(
-                                  context, RouteNames.resetPassword);
+                                context,
+                                RouteNames.resetPassword,
+                              );
                             } else {
                               Fluttertoast.showToast(
                                 msg: "The code is not valid. Try again",

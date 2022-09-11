@@ -86,8 +86,11 @@ class ProfilePage extends StatelessWidget {
                       if (state is ProfileFetchedLoaded) {
                         return ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, RouteNames.setting,
-                                arguments: ProfileSettingArguments(state.user));
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.setting,
+                              arguments: ProfileSettingArguments(state.user),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.indigoAccent,

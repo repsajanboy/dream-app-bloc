@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/user/user.dart';
 import 'package:dream_app_bloc/repositories/user_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';

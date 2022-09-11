@@ -148,8 +148,11 @@ class RegisterForm extends StatelessWidget {
               errorStyle: context.typo.authErrorStyle(),
               suffixIcon: IconButton(
                 onPressed: () {
-                  context.read<RegisterBloc>().add(RegisterObscureTextChanged(
-                      isObscureText: !state.isObscureText));
+                  context.read<RegisterBloc>().add(
+                        RegisterObscureTextChanged(
+                          isObscureText: !state.isObscureText,
+                        ),
+                      );
                 },
                 icon: Icon(
                   state.isObscureText ? Icons.visibility_off : Icons.visibility,

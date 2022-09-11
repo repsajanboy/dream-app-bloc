@@ -1,11 +1,12 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dream_app_bloc/data/dream/post_dream.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-//const baseUrl = "http://10.0.2.2:3000";
-const baseUrl = "https://dream-journal-app.herokuapp.com";
+const baseUrl = "http://10.0.2.2:3000";
 class ApiClient {
   final _dio = Dio();
 
@@ -54,7 +55,7 @@ class ApiClient {
           "auth-token": token,
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
-        }),
+        },),
       );
       final toEncode = json.encode(dreamsResponse.data);
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
@@ -73,8 +74,8 @@ class ApiClient {
             "auth-token": token,
             'Content-Type': 'application/json;charset=UTF-8',
             'Charset': 'utf-8'
-          }),
-          data: postDream.toJson());
+          },),
+          data: postDream.toJson(),);
       final toEncode = json.encode(postDreamResponse.data);
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
@@ -92,8 +93,8 @@ class ApiClient {
             "auth-token": token,
             'Content-Type': 'application/json;charset=UTF-8',
             'Charset': 'utf-8'
-          }),
-          data: updateDream.toJson());
+          },),
+          data: updateDream.toJson(),);
       final toEncode = json.encode(postDreamResponse.data);
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
       return response;
@@ -157,7 +158,7 @@ class ApiClient {
           "auth-token": token,
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
-        }),
+        },),
       );
       final toEncode = json.encode(dreamsResponse.data);
       final response = json.decode(toEncode.replaceAll('_id', 'id'));
@@ -169,7 +170,7 @@ class ApiClient {
   }
 
   Future<dynamic> updateFavoriteDream(
-      String token, String dreamId, Map<String, dynamic> updateFavorite) async {
+      String token, String dreamId, Map<String, dynamic> updateFavorite,) async {
     try {
       final updateDreamUrl = "$baseUrl/api/dream/$dreamId";
       final postDreamResponse = await _dio.put(
@@ -178,7 +179,7 @@ class ApiClient {
           "auth-token": token,
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
-        }),
+        },),
         data: updateFavorite,
       );
       final toEncode = json.encode(postDreamResponse.data);
@@ -198,7 +199,7 @@ class ApiClient {
           options: Options(headers: {
             'x-rapidapi-host': dotenv.env['HOROSCOPE_API_HOST'],
             'x-rapidapi-key': dotenv.env['HOROSCOPE_API_KEY']
-          }));
+          },),);
       return json.decode(response.toString());
     } on DioError catch (e) {
       throw Exception(e.toString());
@@ -214,7 +215,7 @@ class ApiClient {
           "auth-token": token,
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
-        }),
+        },),
       );
       final toEncode = json.encode(deleteResponse.data);
       final response = json.decode(toEncode.replaceAll('_id', 'id'));

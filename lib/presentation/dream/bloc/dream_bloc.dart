@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'dream_event.dart';
 part 'dream_state.dart';

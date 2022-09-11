@@ -1,6 +1,8 @@
-import 'package:bloc/bloc.dart';
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'reset_password_state.dart';
 

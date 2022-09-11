@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:dream_app_bloc/networking/api_client.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 
@@ -22,7 +24,11 @@ class AuthorizationRepository {
   }
 
   Future<dynamic> register(
-      String firstName, String lastName, String email, String password) async {
+    String firstName,
+    String lastName,
+    String email,
+    String password,
+  ) async {
     final registerObj = {
       "firstName": firstName,
       "lastName": lastName,
