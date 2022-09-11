@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/presentation/reset_password/reset_password.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
 import 'package:dream_app_bloc/style/colors.dart';
@@ -5,8 +6,6 @@ import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../reset_password.dart';
 
 class ResetPasswordModal extends StatelessWidget {
   ResetPasswordModal({Key? key}) : super(key: key);
@@ -16,7 +15,8 @@ class ResetPasswordModal extends StatelessWidget {
     String email = "";
     return BlocProvider(
       create: (context) => ResetPasswordCubit(
-          authorizationRepository: context.read<AuthorizationRepository>()),
+        authorizationRepository: context.read<AuthorizationRepository>(),
+      ),
       child: AlertDialog(
         backgroundColor: AppColors.background,
         shape: RoundedRectangleBorder(

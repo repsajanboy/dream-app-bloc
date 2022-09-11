@@ -30,10 +30,11 @@ class LoginButtonMD extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.orange.shade400,
-                            onPrimary: Colors.white,
-                            shape: const StadiumBorder(),
-                            padding: const EdgeInsets.all(10.0)),
+                          primary: Colors.orange.shade400,
+                          onPrimary: Colors.white,
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.all(10.0),
+                        ),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             context.read<LoginBloc>().add(LoginSubmitted());
@@ -63,7 +64,9 @@ class LoginButtonMD extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                        text: ' and ', style: TextStyle(color: Colors.white60)),
+                      text: ' and ',
+                      style: TextStyle(color: Colors.white60),
+                    ),
                     TextSpan(
                       text: 'Privacy Policy',
                       style: TextStyle(

@@ -30,12 +30,12 @@ class AppRouter {
       case RouteNames.menu:
         final currIndex = routeSettings.arguments! as int;
         return MaterialPageRoute(
-            builder: (_) => BottomNavBarPage(
-                  currIndex: currIndex,
-                ));
+          builder: (_) => BottomNavBarPage(
+            currIndex: currIndex,
+          ),
+        );
       case RouteNames.upsertDream:
-        final args =
-            routeSettings.arguments! as UpsertScreenArgument;
+        final args = routeSettings.arguments! as UpsertScreenArgument;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => UpsertDreamBloc(
@@ -55,8 +55,7 @@ class AppRouter {
           ),
         );
       case RouteNames.setting:
-        final args =
-            routeSettings.arguments! as ProfileSettingArguments;
+        final args = routeSettings.arguments! as ProfileSettingArguments;
         return PageRouteBuilder(
           settings:
               routeSettings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
@@ -68,15 +67,17 @@ class AppRouter {
               ProfileSettingPage(
             user: args.user!,
           ),
-          transitionsBuilder: (BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child) {
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) {
             return Stack(
               children: <Widget>[
                 SlideTransition(
                   position: Tween<Offset>(
-                    begin: const Offset(0.0, 0.0),
+                    begin: Offset.zero,
                     end: const Offset(-1.0, 0.0),
                   ).animate(animation),
                   child: const BottomNavBarPage(
@@ -104,8 +105,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => NewPasswordBloc(
-                authorizationRepository:
-                    context.read<AuthorizationRepository>()),
+              authorizationRepository: context.read<AuthorizationRepository>(),
+            ),
             child: ResetPasswordPage(),
           ),
         );

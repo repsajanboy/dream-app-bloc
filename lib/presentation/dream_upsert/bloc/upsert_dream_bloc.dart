@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/data/dream/post_dream.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'upsert_dream_event.dart';
 part 'upsert_dream_state.dart';
@@ -49,14 +49,15 @@ class UpsertDreamBloc extends Bloc<UpsertDreamEvent, UpsertDreamState> {
     } else if (event is UpsertEditSaved) {
       yield state.copyWith(formStatus: FormSubmitting());
       final updateDream = PostDream(
-          id: state.id,
-          title: state.title,
-          content: state.content,
-          category: state.category,
-          rate: state.rate,
-          favorite: state.favorite,
-          inputDate: state.inputDate,
-          updateDate: DateTime.now());
+        id: state.id,
+        title: state.title,
+        content: state.content,
+        category: state.category,
+        rate: state.rate,
+        favorite: state.favorite,
+        inputDate: state.inputDate,
+        updateDate: DateTime.now(),
+      );
       try {
         await dreamRepository.updateDream(updateDream);
 

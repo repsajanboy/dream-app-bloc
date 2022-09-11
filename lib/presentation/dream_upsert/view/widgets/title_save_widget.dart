@@ -1,9 +1,8 @@
+import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../upsert_dream.dart';
 
 class TitleSaveWidget extends StatelessWidget {
   final bool isEditing;

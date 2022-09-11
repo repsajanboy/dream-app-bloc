@@ -25,11 +25,12 @@ class RateAndContactWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.star_border_rounded,
-                          size: 32.0,
-                        )),
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.star_border_rounded,
+                        size: 32.0,
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(

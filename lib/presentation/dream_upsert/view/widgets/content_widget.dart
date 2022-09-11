@@ -1,10 +1,9 @@
+import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
-import '../../upsert_dream.dart';
 
 class ContentFormWidget extends StatelessWidget {
   final bool isEditing;
@@ -60,7 +59,8 @@ class ContentFormWidget extends StatelessWidget {
                                   lastDate: DateTime(2222),
                                 ).then((date) {
                                   context.read<UpsertDreamBloc>().add(
-                                      UpsertInputDateChanged(inputDate: date));
+                                        UpsertInputDateChanged(inputDate: date),
+                                      );
                                 });
                               },
                             )

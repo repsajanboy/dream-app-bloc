@@ -1,11 +1,10 @@
 import 'dart:ui';
 
 import 'package:dream_app_bloc/data/dream/dream_themes.dart';
+import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../upsert_dream.dart';
 
 class CategoriesWidget extends StatelessWidget {
   final bool isEditing;
@@ -42,8 +41,11 @@ class CategoriesWidget extends StatelessWidget {
                       dreamThemes.indexWhere((e) => e.theme == state.category);
                   return InkWell(
                     onTap: () {
-                      context.read<UpsertDreamBloc>().add(UpsertCategoryChanged(
-                          category: dreamThemes[index].theme));
+                      context.read<UpsertDreamBloc>().add(
+                            UpsertCategoryChanged(
+                              category: dreamThemes[index].theme,
+                            ),
+                          );
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
@@ -52,7 +54,7 @@ class CategoriesWidget extends StatelessWidget {
                           sigmaX: 16.0,
                           sigmaY: 16.0,
                         ),
-                        child: Container(
+                        child: DecoratedBox(
                           decoration: BoxDecoration(
                             color: Colors.indigoAccent.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(16.0),
@@ -77,9 +79,10 @@ class CategoriesWidget extends StatelessWidget {
                               Text(
                                 dreamThemes[index].theme,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.dreams,
-                                    fontSize: 16.0),
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.dreams,
+                                  fontSize: 16.0,
+                                ),
                               ),
                             ],
                           ),

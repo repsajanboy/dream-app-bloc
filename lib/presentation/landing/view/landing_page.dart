@@ -7,7 +7,7 @@ class LandingPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: Container(
+        body: DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -36,9 +36,10 @@ class LandingPage extends StatelessWidget {
                             child: Text(
                               'DJ',
                               style: TextStyle(
-                                  color: Colors.indigo.shade900,
-                                  fontSize: 50.0,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.indigo.shade900,
+                                fontSize: 50.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 10.0),

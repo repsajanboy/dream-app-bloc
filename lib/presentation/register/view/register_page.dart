@@ -1,4 +1,8 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:dream_app_bloc/presentation/register/register.dart';
+import 'package:dream_app_bloc/presentation/register/view/widget/register_button.dart';
+import 'package:dream_app_bloc/presentation/register/view/widget/register_form.dart';
 import 'package:dream_app_bloc/presentation/register/view/widget/register_header.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
@@ -7,9 +11,6 @@ import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import 'widget/register_button.dart';
-import 'widget/register_form.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);
@@ -27,23 +28,28 @@ class RegisterPage extends StatelessWidget {
       child: Scaffold(
         body: BlocProvider(
           create: (context) => RegisterBloc(
-              authorizationRepository: context.read<AuthorizationRepository>()),
+            authorizationRepository: context.read<AuthorizationRepository>(),
+          ),
           child: BlocListener<RegisterBloc, RegisterState>(
             listener: (context, state) {
               final formStatus = state.formStatus;
               if (formStatus is SubmissionSuccess) {
-                Navigator.pushReplacementNamed(context, RouteNames.menu,
-                    arguments: 0);
+                Navigator.pushReplacementNamed(
+                  context,
+                  RouteNames.menu,
+                  arguments: 0,
+                );
               } else if (formStatus is SubmissionFailed) {
                 Fluttertoast.showToast(
-                    msg: formStatus.error!.errorMessage(),
-                    gravity: ToastGravity.TOP,
-                    toastLength: Toast.LENGTH_LONG,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white);
+                  msg: formStatus.error!.errorMessage(),
+                  gravity: ToastGravity.TOP,
+                  toastLength: Toast.LENGTH_LONG,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                );
               }
             },
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topRight,

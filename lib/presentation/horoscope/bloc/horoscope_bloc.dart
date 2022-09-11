@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/horoscope/horoscope.dart';
 import 'package:dream_app_bloc/repositories/horoscope_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'horoscope_event.dart';
 part 'horoscope_state.dart';

@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'favorite_dream_event.dart';
 part 'favorite_dream_state.dart';
@@ -40,7 +40,7 @@ class FavoriteDreamBloc extends Bloc<FavoriteDreamEvent, FavoriteDreamState> {
   }
 
   Future<FavoriteDreamState> _mapFavoriteDreamsFetchedToState(
-      FavoriteDreamState state) async {
+      FavoriteDreamState state,) async {
     try {
       if (state.status == FavoriteDreamStatus.initial) {
         final dreams = await dreamRepository.fetchFavoriteDreams();

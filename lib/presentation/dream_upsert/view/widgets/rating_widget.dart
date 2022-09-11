@@ -1,9 +1,8 @@
 import 'package:dream_app_bloc/data/dream/dream_rates.dart';
+import 'package:dream_app_bloc/presentation/dream_upsert/upsert_dream.dart';
 import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../upsert_dream.dart';
 
 class RatingWidget extends StatelessWidget {
   final bool isEditing;
@@ -33,7 +32,7 @@ class RatingWidget extends StatelessWidget {
                   Text(
                     ratings[state.rate].emoji,
                     style: const TextStyle(
-                      fontSize: 64.0
+                      fontSize: 64.0,
                     ),
                   ),
                   Text(

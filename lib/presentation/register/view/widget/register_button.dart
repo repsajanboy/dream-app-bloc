@@ -1,8 +1,7 @@
+import 'package:dream_app_bloc/presentation/register/register.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../register.dart';
 
 class RegisterButton extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -27,10 +26,11 @@ class RegisterButton extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.orange.shade400,
-                            onPrimary: Colors.white,
-                            shape: const StadiumBorder(),
-                            padding: const EdgeInsets.all(10.0)),
+                          primary: Colors.orange.shade400,
+                          onPrimary: Colors.white,
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.all(10.0),
+                        ),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             context

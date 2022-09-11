@@ -78,7 +78,7 @@ class LoginForm extends StatelessWidget {
               suffixIcon: IconButton(
                 onPressed: () {
                   context.read<LoginBloc>().add(LoginObscureTextChanged(
-                      isObscureText: !state.isObscureText));
+                      isObscureText: !state.isObscureText,),);
                 },
                 icon: Icon(
                   state.isObscureText ? Icons.visibility_off : Icons.visibility,

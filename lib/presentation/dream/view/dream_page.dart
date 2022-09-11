@@ -1,5 +1,6 @@
 import 'package:dream_app_bloc/data/dream/dream.dart';
 import 'package:dream_app_bloc/data/dream/dream_rates.dart';
+import 'package:dream_app_bloc/presentation/dream/dream.dart';
 import 'package:dream_app_bloc/presentation/dream_favorites/favorite_dreams.dart';
 import 'package:dream_app_bloc/repositories/dream_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
@@ -8,8 +9,6 @@ import 'package:dream_app_bloc/utils/navigator_arguments/upsert_screen_arguments
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
-import '../dream.dart';
 
 class DreamPage extends StatelessWidget {
   const DreamPage({Key? key, required this.dream}) : super(key: key);
@@ -92,8 +91,10 @@ class DreamPage extends StatelessWidget {
                                           arguments: dream.favorite ? 0 : 3,
                                         );
                                       },
-                                      icon: const Icon(Icons.favorite_border,
-                                          size: 18),
+                                      icon: const Icon(
+                                        Icons.favorite_border,
+                                        size: 18,
+                                      ),
                                       label: dream.favorite
                                           ? const Text("Remove to favorite")
                                           : const Text("Add to favorite"),
@@ -121,7 +122,8 @@ class DreamPage extends StatelessWidget {
                                       onPressed: () async {
                                         Navigator.pop(context);
                                         context.read<DreamBloc>().add(
-                                            DreamDelete(dreamId: dream.id));
+                                              DreamDelete(dreamId: dream.id),
+                                            );
                                         Navigator.pushReplacementNamed(
                                           context,
                                           RouteNames.menu,
@@ -148,12 +150,14 @@ class DreamPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(dream.title,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
-                            )),
+                        Text(
+                          dream.title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0,
+                          ),
+                        ),
                         Text(
                           DateFormat('EEE, MMM d, ' 'yyyy')
                               .format(dream.inputDate),
@@ -200,10 +204,11 @@ class DreamPage extends StatelessWidget {
                 child: Text(
                   dream.content,
                   style: const TextStyle(
-                      color: AppColors.dreams,
-                      fontWeight: FontWeight.w200,
-                      letterSpacing: 1.5,
-                      fontSize: 16.0),
+                    color: AppColors.dreams,
+                    fontWeight: FontWeight.w200,
+                    letterSpacing: 1.5,
+                    fontSize: 16.0,
+                  ),
                 ),
               ),
             ),

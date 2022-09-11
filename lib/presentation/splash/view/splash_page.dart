@@ -41,7 +41,7 @@ class _SplashViewState extends State<SplashView> {
 
   Widget _splashWidget() {
     return Scaffold(
-      body: Container(
+      body: DecoratedBox(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,

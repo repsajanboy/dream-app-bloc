@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:dream_app_bloc/utils/shared_pref.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'new_password_event.dart';
 part 'new_password_state.dart';
