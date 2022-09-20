@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dream_app_bloc/presentation/register/register.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:email_validator/email_validator.dart';
@@ -13,7 +15,10 @@ class RegisterForm extends StatelessWidget {
     return Form(
       key: formKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 16.0,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -34,10 +39,12 @@ class RegisterForm extends StatelessWidget {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: Colors.indigo.shade800.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(
+              color: Colors.white.withOpacity(.5),
+            ),
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -67,10 +74,12 @@ class RegisterForm extends StatelessWidget {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: Colors.indigo.shade800.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(
+              color: Colors.white.withOpacity(.5),
+            ),
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -100,10 +109,12 @@ class RegisterForm extends StatelessWidget {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: Colors.indigo.shade800.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(
+              color: Colors.white.withOpacity(.5),
+            ),
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -132,10 +143,12 @@ class RegisterForm extends StatelessWidget {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: Colors.indigo.shade800.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(
+              color: Colors.white.withOpacity(.5),
+            ),
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,

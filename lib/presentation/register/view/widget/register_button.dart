@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/presentation/register/register.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,44 +10,54 @@ class RegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 40.0,
-        right: 40.0,
-        top: 5.0,
-        bottom: 15.0,
-      ),
-      child: Column(
-        children: [
-          BlocBuilder<RegisterBloc, RegisterState>(
-            builder: (context, state) {
-              return state.formStatus is FormSubmitting
-                  ? const CircularProgressIndicator()
-                  : SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.orange.shade400,
-                          onPrimary: Colors.white,
-                          shape: const StadiumBorder(),
-                          padding: const EdgeInsets.all(10.0),
-                        ),
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            context
-                                .read<RegisterBloc>()
-                                .add(RegisterSubmitted());
-                          }
-                        },
-                        child: const Text(
-                          'SIGN UP',
-                          style: TextStyle(fontSize: 16.0),
+    return Center(
+      child: BlocBuilder<RegisterBloc, RegisterState>(
+        builder: (context, state) {
+          return state.formStatus is FormSubmitting
+              ? const CircularProgressIndicator()
+              : SizedBox(
+                  width: MediaQuery.of(context).size.width * .75,
+                  child: GestureDetector(
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        context.read<RegisterBloc>().add(RegisterSubmitted());
+                      }
+                    },
+                    child: DecoratedBox(
+                      decoration: ShapeDecoration(
+                        shape: const StadiumBorder(),
+                        shadows: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            offset: const Offset(4, 8),
+                            blurRadius: 4,
+                          )
+                        ],
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.deepPurple,
+                            AppColors.buttonMain,
+                          ],
                         ),
                       ),
-                    );
-            },
-          ),
-        ],
+                      child: const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Center(
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+        },
       ),
     );
   }
