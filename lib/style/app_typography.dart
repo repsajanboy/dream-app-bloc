@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class AppTextStyle {
   TextStyle authHeader() {
     return const TextStyle(
-      color: Colors.white24,
-      fontSize: 60,
+      color: Colors.white70,
+      fontSize: 56,
       fontWeight: FontWeight.bold,
     );
   }
@@ -19,7 +19,7 @@ class AppTextStyle {
 
   TextStyle authHintStyle() {
     return const TextStyle(
-      color: Colors.white60,
+      color: Colors.white,
       fontWeight: FontWeight.w800,
     );
   }

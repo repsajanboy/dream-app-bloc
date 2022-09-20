@@ -1,4 +1,5 @@
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
@@ -8,18 +9,20 @@ class LandingPage extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         body: DecoratedBox(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
               colors: [
-                Colors.indigoAccent,
-                Colors.indigo.shade900,
+                Color(0xFF203f81),
+                Color(0xFF576cd6),
+                Color(0xFF4f67d8),
+                Color(0xFF203f81),
               ],
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0,),
             child: Column(
               children: [
                 Expanded(
@@ -33,10 +36,10 @@ class LandingPage extends StatelessWidget {
                             padding: const EdgeInsets.all(10.0),
                             decoration:
                                 const BoxDecoration(color: Colors.white),
-                            child: Text(
+                            child: const Text(
                               'DJ',
                               style: TextStyle(
-                                color: Colors.indigo.shade900,
+                                color: Color(0xFF576cd6),
                                 fontSize: 50.0,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -75,26 +78,27 @@ class LandingPage extends StatelessWidget {
                 Column(
                   children: [
                     SizedBox(
-                      width: double.infinity,
+                      width: MediaQuery.of(context).size.width * .75,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.orange.shade400, // background
+                          primary: AppColors.buttonMain, // background
                           onPrimary: Colors.white, // foreground
                           shape: const StadiumBorder(),
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(16.0),
+                          shadowColor: Colors.black,
                         ),
                         onPressed: () {
                           Navigator.pushNamed(context, RouteNames.register);
                         },
                         child: const Text(
-                          'GET STARTED',
-                          style: TextStyle(letterSpacing: 1.5, fontSize: 20.0),
+                          'Get Started',
+                          style: TextStyle(fontSize: 16.0),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 16.0),
                     SizedBox(
-                      width: double.infinity,
+                      width: MediaQuery.of(context).size.width * .75,
                       child: TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, RouteNames.login);
@@ -102,12 +106,11 @@ class LandingPage extends StatelessWidget {
                         child: const Center(
                           child: Text(
                             'I ALREADY HAVE AN ACCOUNT',
-                            style: TextStyle(letterSpacing: 1.0),
+                            style: TextStyle(letterSpacing: 1.0, color: Colors.white),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20)
                   ],
                 )
               ],

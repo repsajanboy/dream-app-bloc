@@ -6,40 +6,26 @@ class RegisterHeader extends StatelessWidget {
   final bool visible;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          child: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white60,
+    return Center(
+      child: Visibility(
+        visible: visible,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Create an',
+              style: context.typo.authHeader(),
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-        Visibility(
-          visible: visible,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Create an',
-                  style: context.typo.authHeader(),
-                ),
-                Text(
-                  'Account',
-                  style: context.typo.authHeader(),
-                ),
-              ],
+            const SizedBox(
+              height: 8.0,
             ),
-          ),
+            Text(
+              'Account',
+              style: context.typo.authHeader(),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
