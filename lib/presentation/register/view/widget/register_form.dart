@@ -16,7 +16,7 @@ class RegisterForm extends StatelessWidget {
       key: formKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 8,
+          horizontal: 16,
           vertical: 16.0,
         ),
         child: Column(
@@ -42,7 +42,7 @@ class RegisterForm extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white.withOpacity(.5),
+              color: Colors.white,
             ),
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -77,7 +77,7 @@ class RegisterForm extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white.withOpacity(.5),
+              color: Colors.white,
             ),
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -112,7 +112,7 @@ class RegisterForm extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white.withOpacity(.5),
+              color: Colors.white,
             ),
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -146,7 +146,7 @@ class RegisterForm extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white.withOpacity(.5),
+              color: Colors.white,
             ),
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -169,7 +169,7 @@ class RegisterForm extends StatelessWidget {
                 },
                 icon: Icon(
                   state.isObscureText ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.white70,
+                  color: Colors.white,
                 ),
               ),
             ),

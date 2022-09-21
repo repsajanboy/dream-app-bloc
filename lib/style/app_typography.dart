@@ -20,13 +20,13 @@ class AppTextStyle {
   TextStyle authHintStyle() {
     return const TextStyle(
       color: Colors.white,
-      fontWeight: FontWeight.w800,
     );
   }
 
   TextStyle authErrorStyle() {
     return const TextStyle(
-      fontSize: 16.0,
+      fontSize: 14.0,
+      color: Colors.white70
     );
   }
 

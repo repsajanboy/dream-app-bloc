@@ -30,7 +30,7 @@ class RegisterButton extends StatelessWidget {
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
                             offset: const Offset(4, 8),
-                            blurRadius: 4,
+                            blurRadius: 2,
                           )
                         ],
                         gradient: const LinearGradient(
