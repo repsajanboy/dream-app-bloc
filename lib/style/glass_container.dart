@@ -29,7 +29,7 @@ class GlassMorphismContainer extends StatelessWidget {
               radius: 50.0,
             ),
             border: Border.all(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withOpacity(0.3),
             ),
           ),
           child: child,
