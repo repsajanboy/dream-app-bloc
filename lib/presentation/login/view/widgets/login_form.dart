@@ -15,7 +15,10 @@ class LoginForm extends StatelessWidget {
     return Form(
       key: formKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16.0,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,8 +39,10 @@ class LoginForm extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
-            color: Colors.indigo.shade800.withOpacity(0.5),
             borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(
+              color: Colors.white,
+            ),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -65,8 +70,10 @@ class LoginForm extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
-            color: Colors.indigo.shade800.withOpacity(0.5),
             borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(
+              color: Colors.white,
+            ),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -77,12 +84,15 @@ class LoginForm extends StatelessWidget {
               errorStyle: context.typo.authErrorStyle(),
               suffixIcon: IconButton(
                 onPressed: () {
-                  context.read<LoginBloc>().add(LoginObscureTextChanged(
-                      isObscureText: !state.isObscureText,),);
+                  context.read<LoginBloc>().add(
+                        LoginObscureTextChanged(
+                          isObscureText: !state.isObscureText,
+                        ),
+                      );
                 },
                 icon: Icon(
                   state.isObscureText ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.white70,
+                  color: Colors.white,
                 ),
               ),
               hintText: 'Password',
@@ -107,7 +117,7 @@ class LoginForm extends StatelessWidget {
         onPressed: () => showOptionsDialog(context),
         child: const Text(
           'FORGOT?',
-          style: TextStyle(color: Colors.white60, fontSize: 16.0),
+          style: TextStyle(color: Colors.white, fontSize: 16.0),
         ),
       ),
     );
