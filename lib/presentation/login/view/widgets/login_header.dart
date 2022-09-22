@@ -1,3 +1,4 @@
+import 'package:dream_app_bloc/style/glass_container.dart';
 import 'package:dream_app_bloc/utils/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -8,23 +9,29 @@ class LoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          child: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white60,
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 16,
+            left: 16.0,
+            bottom: 16.0,
+          ),
+          child: GlassMorphismContainer(
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white60,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
           ),
         ),
         Visibility(
           visible: visible,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

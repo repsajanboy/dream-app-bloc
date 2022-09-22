@@ -29,6 +29,39 @@ class RegisterForm extends StatelessWidget {
             _emailField(),
             const SizedBox(height: 10.0),
             _passwordField(),
+            const SizedBox(
+              height: 16.0,
+            ),
+            Column(
+              children: [
+                const Text(
+                  'By signing up, you are agreeing to our',
+                  style: TextStyle(color: Colors.white60),
+                ),
+                RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Term of Service',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' and ',
+                        style: TextStyle(color: Colors.white60),
+                      ),
+                      TextSpan(
+                        text: 'Privacy Policy',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),

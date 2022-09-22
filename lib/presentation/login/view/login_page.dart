@@ -6,6 +6,7 @@ import 'package:dream_app_bloc/presentation/login/view/widgets/login_form.dart';
 import 'package:dream_app_bloc/presentation/login/view/widgets/login_header.dart';
 import 'package:dream_app_bloc/repositories/auth_repository.dart';
 import 'package:dream_app_bloc/routing/app_router_names.dart';
+import 'package:dream_app_bloc/style/glass_container.dart';
 import 'package:dream_app_bloc/utils/extension/string_extension.dart';
 import 'package:dream_app_bloc/utils/form_submission_status.dart';
 import 'package:flutter/material.dart';
@@ -50,28 +51,47 @@ class LoginPage extends StatelessWidget {
               }
             },
             child: DecoratedBox(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                   colors: [
-                    Colors.indigoAccent,
-                    Colors.indigo.shade900,
+                    Color(0xFF203f81),
+                    Color(0xFF576cd6),
+                    Color(0xFF4f67d8),
+                    Color(0xFF203f81),
                   ],
                 ),
               ),
               child: SafeArea(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     LoginHeader(
                       visible: visible,
                     ),
-                    LoginForm(
-                      formKey: _formKey,
-                    ),
-                    LoginButtonMD(
-                      formKey: _formKey,
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: GlassMorphismContainer(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  LoginForm(
+                                    formKey: _formKey,
+                                  ),
+                                  LoginButtonMD(
+                                    formKey: _formKey,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
