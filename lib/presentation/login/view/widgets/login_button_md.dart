@@ -14,9 +14,9 @@ class LoginButtonMD extends StatelessWidget {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return state.formStatus is FormSubmitting
-              ? CircularProgressIndicator(
+              ? const CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.orange.shade400,
+                    AppColors.buttonMain,
                   ),
                 )
               : SizedBox(
